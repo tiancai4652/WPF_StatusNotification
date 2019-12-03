@@ -10,37 +10,44 @@
         mc:Ignorable="d"
         Title="NotifierView" Height="{Binding Height}" Width="{Binding Width}"  AllowsTransparency="True" Background="#FF131212" Opacity="0.8" WindowStyle="None">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="60"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0" >
-            <Grid.RowDefinitions>
-                <RowDefinition Height="60"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <!--<Grid Margin="20">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <!--<Grid Margin="20">
                 <Grid.Background>
                     <ImageBrush></ImageBrush>
                 </Grid.Background>
             </Grid>-->
-            <Grid >
-                <Image Width="25" Opacity="{Binding Path=Opacity,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type base:NotifierViewBase}}}" Source="/WPF_StatusNotification;component/Resource/Lights_1024px_1184578_easyicon.net.png"></Image>
+                <Grid >
+                    <Image Width="25" Opacity="{Binding Path=Opacity,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type base:NotifierViewBase}}}" Source="/WPF_StatusNotification;component/Resource/Lights_1024px_1184578_easyicon.net.png"></Image>
+                </Grid>
+
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid >
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  FontSize="22" FontWeight="Bold" Foreground="White"  Text="{Binding Header}"></TextBlock>
+                </Grid>
+                <Grid Margin="0,0,20,20" Grid.Row="1">
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" FontSize="22" FontWeight="Bold" Foreground="White"  Text="{Binding Context}"></TextBlock>
+                </Grid>
             </Grid>
 
         </Grid>
-        <Grid Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="60"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <Grid >
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  FontSize="22" FontWeight="Bold" Foreground="White"  Text="{Binding Header}"></TextBlock>
-            </Grid>
-            <Grid Margin="0,0,20,20" Grid.Row="1">
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" FontSize="22" FontWeight="Bold" Foreground="White"  Text="{Binding Context}"></TextBlock>
-            </Grid>
+        <Grid>
+            <Button x:Name="button" Margin="10" Width="30" Height="20" Background="Transparent" HorizontalAlignment="Right" VerticalAlignment="Top">
+                <Image Source="/WPF_StatusNotification;component/Resource/right arrow 24 px.png"></Image>
+            </Button>
         </Grid>
-
     </Grid>
 </base:NotifierViewBase>

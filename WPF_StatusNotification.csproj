@@ -107,5 +107,8 @@
   <ItemGroup>
     <Resource Include="Resource\Lights_1024px_1184578_easyicon.net.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\right arrow 24 px.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
