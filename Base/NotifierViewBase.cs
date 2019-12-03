@@ -22,52 +22,9 @@ namespace WPF_StatusNotification.Base
         public Action BeforeAnimation { get; set; }
         public Action AfterAnimation { get; set; }
         public double NotifierTop { get; set; } = double.NaN;
-
-        double _RightFrom = double.NaN;
-        public double RightFrom
-        {
-            get
-            {
-                return _RightFrom;
-            }
-            set
-            {
-                _RightFrom = value;
-                OnPropertyChanged(nameof(RightFrom));
-            }
-        }
-
-        double _RightTo = double.NaN;
-        public double RightTo
-        {
-            get
-            {
-                return _RightTo;
-            }
-            set
-            {
-                _RightTo = value;
-                OnPropertyChanged(nameof(RightTo));
-            }
-        }
-
-        Duration _AnamitionDurationTime = new Duration(TimeSpan.FromMilliseconds(500));
-        /// <summary>
-        /// 动画执行时间
-        /// </summary>
-        public Duration AnamitionDurationTime
-        {
-            get
-            {
-                return _AnamitionDurationTime;
-            }
-            set
-            {
-                _AnamitionDurationTime = value;
-                OnPropertyChanged(nameof(AnamitionDurationTime));
-            }
-        }
-
+        public double RightFrom { get; set; } = double.NaN;
+        public double RightTo { get; set; } = double.NaN;
+        Duration AnamitionDurationTime { get; set; } = new Duration(TimeSpan.FromMilliseconds(500));
 
         public static void Show(NotifierViewBase notifier)
         {
@@ -85,13 +42,13 @@ namespace WPF_StatusNotification.Base
             notifier.Show();
         }
 
-       static void OverrideLoaded(object sender, RoutedEventArgs e)
+        static void OverrideLoaded(object sender, RoutedEventArgs e)
         {
             var notifier = sender as NotifierViewBase;
 
             notifier.UpdateLayout();
 
-            if(notifier.BeforeAnimation != null)
+            if (notifier.BeforeAnimation != null)
             {
                 notifier.BeforeAnimation.Invoke();
             }
@@ -118,7 +75,7 @@ namespace WPF_StatusNotification.Base
 
             notifier.BeginAnimation(Window.LeftProperty, animation);
 
-            
+
 
             Task.Factory.StartNew(delegate
             {
