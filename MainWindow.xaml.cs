@@ -13,6 +13,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WPF_StatusNotification.Base;
 using WPF_StatusNotification.View;
+using WPF_StatusNotification.ViewModel;
 
 namespace WPF_StatusNotification
 {
@@ -28,7 +29,10 @@ namespace WPF_StatusNotification
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-             NotifierViewBase.Show (new NotifierView());
+            NotifierViewModel viewModel = new NotifierViewModel();
+            viewModel.Header = "ACal校准软件";
+            viewModel.Context = "ACal用户您好，您机器上安装了360安全卫士、360杀毒等产品，它有时会误报并阻止软件正常操作，为了不影响您的工作，强烈建议您卸载360软件。 ";
+            NotifierViewBase.Show (new NotifierView(viewModel));
         }
     }
 }

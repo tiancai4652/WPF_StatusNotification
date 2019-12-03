@@ -9,7 +9,7 @@
                        xmlns:vm="clr-namespace:WPF_StatusNotification.ViewModel"
                       
         mc:Ignorable="d"
-        Title="NotifierView" Height="{Binding Height}" Width="{Binding Width}"  AllowsTransparency="True" Background="#FF131212" Opacity="0.8" WindowStyle="None"  >
+        Title="NotifierView" SizeToContent="WidthAndHeight"  AllowsTransparency="True" Background="#FF131212" Opacity="0.8" WindowStyle="None"  >
     <base:NotifierViewBase.Resources>
         <Style x:Key="ButtonStyle1" TargetType="{x:Type Button}">
             <Setter Property="FocusVisualStyle">
@@ -76,46 +76,49 @@
         </Storyboard>-->
 
     </base:NotifierViewBase.Resources>
-   
+
     <Grid>
         <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="60"/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0" >
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="60"/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <!--<Grid Margin="20">
-                <Grid.Background>
-                    <ImageBrush></ImageBrush>
-                </Grid.Background>
-            </Grid>-->
-                <Grid >
-                    <Image Width="25" Opacity="{Binding Path=Opacity,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type base:NotifierViewBase}}}" Source="/WPF_StatusNotification;component/Resource/Lights_1024px_1184578_easyicon.net.png"></Image>
-                </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
 
-            </Grid>
-            <Grid Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="60"/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <Grid >
-                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  FontSize="22" FontWeight="Bold" Foreground="White"  Text="{Binding Header}"></TextBlock>
-                </Grid>
-                <Grid Margin="0,0,20,20" Grid.Row="1">
-                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" FontSize="22"  Foreground="#FFCDC9C9"  Text="{Binding Context}"></TextBlock>
-                </Grid>
-            </Grid>
+                    <Grid Margin="0,20,0,0">
+                        <Image  Width="30" Height="30" Opacity="{Binding Path=Opacity,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type base:NotifierViewBase}}}" Source="/WPF_StatusNotification;component/Resource/A (1).png"></Image>
+                    </Grid>
 
+                </Grid>
+                <Grid Grid.Column="1" Margin="0,20,0,20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid >
+                        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top"  FontSize="15" FontWeight="Bold" Foreground="White"  Text="{Binding Header}" FontFamily="Microsoft YaHei"></TextBlock>
+                    </Grid>
+                    <Grid  Grid.Row="1">
+                        <TextBlock HorizontalAlignment="Left" MaxWidth="300" VerticalAlignment="Top" TextWrapping="Wrap" FontSize="15"  Foreground="#FFCDC9C9" FontFamily="Microsoft YaHei"  Text="{Binding Context}"></TextBlock>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Column="2">
+                    <Button Style="{DynamicResource ButtonStyle1}" x:Name="button" Margin="10" Width="20" Height="15" Background="Transparent" HorizontalAlignment="Right" VerticalAlignment="Top">
+                        <Image x:Name="image" Source="/WPF_StatusNotification;component/Resource/right arrow 24 px.png"  ></Image>
+                    </Button>
+                </Grid>
+            </Grid>
         </Grid>
         <Grid>
-            <Button Style="{DynamicResource ButtonStyle1}" x:Name="button" Margin="10" Width="30" Height="20" Background="Transparent" HorizontalAlignment="Right" VerticalAlignment="Top">
+            <!--<Button Style="{DynamicResource ButtonStyle1}" x:Name="button" Margin="10" Width="30" Height="20" Background="Transparent" HorizontalAlignment="Right" VerticalAlignment="Top">
                 <Image x:Name="image" Source="/WPF_StatusNotification;component/Resource/right arrow 24 px.png"  ></Image>
-            </Button>
+            </Button>-->
         </Grid>
     </Grid>
 </base:NotifierViewBase>

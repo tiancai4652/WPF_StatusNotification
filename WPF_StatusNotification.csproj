@@ -57,7 +57,6 @@
     </ApplicationDefinition>
     <Compile Include="Base\WindowBindingBase.cs" />
     <Compile Include="Base\NotifierViewBase.cs" />
-    <Compile Include="Model\NotifierModel.cs" />
     <Compile Include="ViewModel\NotifierViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="View\NotifierView.xaml.cs">
@@ -111,6 +110,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resource\right arrow 24 px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\A.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\A %281%29.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
