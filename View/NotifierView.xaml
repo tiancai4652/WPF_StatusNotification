@@ -83,10 +83,21 @@
                              >
             </DoubleAnimation>
         </Storyboard>
+        <Storyboard x:Key="OnLoaded3">
+
+            <DoubleAnimation From="0.1" To="1.0"
+ RepeatBehavior="Forever" Duration="0:0:1" Storyboard.TargetProperty="Opacity"/>
+
+        </Storyboard>
 
 
     </base:NotifierViewBase.Resources>
- 
+    <base:NotifierViewBase.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard x:Name="OnLoaded3_BeginStoryboard" Storyboard="{StaticResource OnLoaded3}"/>
+        </EventTrigger>
+    </base:NotifierViewBase.Triggers>
+
     <Grid>
         <Grid>
             <Grid.ColumnDefinitions>
