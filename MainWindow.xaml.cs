@@ -28,7 +28,7 @@ namespace WPF_StatusNotification
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            new NotifierView().Show();
+             NotifierViewBase.Show (new NotifierView());
         }
     }
 }

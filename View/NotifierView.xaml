@@ -64,40 +64,19 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Storyboard x:Key="OnLoaded1" RepeatBehavior="3x" AutoReverse="True">
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Canvas.Left)" Storyboard.TargetName="notifierViewBase">
-                <EasingDoubleKeyFrame KeyTime="0:0:0.00" Value="{Binding XPath=RightOri,Source=Self }"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.10" Value="{Binding XPath=RightFinal,Source=Self}"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.20" Value="{Binding XPath=RightOri,Source=Self }"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.30" Value="{Binding XPath=RightFinal,Source=Self}"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.40" Value="{Binding XPath=RightOri,Source=Self }"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.50" Value="{Binding XPath=RightFinal,Source=Self}"/>
-            </DoubleAnimationUsingKeyFrames>
-        </Storyboard>
 
-     
-        <Storyboard x:Key="OnLoaded3">
-
-            <DoubleAnimation From="0.1" To="1.0"
- RepeatBehavior="Forever" Duration="0:0:1" Storyboard.TargetProperty="Opacity"/>
-
-        </Storyboard>
-
-        <Storyboard x:Key="OnLoaded4">
-
-            <DoubleAnimation From="1920" To="1500"
+        <!--<Storyboard x:Key="OnLoaded4">
+       https://social.msdn.microsoft.com/Forums/zh-CN/88fccc2d-bd7a-44f5-96aa-5d9c2ff19d43/2608027861209233246727492-storyboard?forum=wpfzhchs
+        WPF动画中的很多属性是在动画开始后是不能被改变的,这个很容易理解,比如TO FROM 等属性，
+        如果不把这些值冻结住，在动画过成中随意的改变这些值的话，就会造成动画的过程值计算混乱。
+        同时，动画在一个独立的线程中去计算具体的中间值，如果邦定了这个在另外独立线程中所需要的属性的话，就会造成上面这个错误。
+        如何避免，不要对于动画上的那些属性作邦定。通过代码在动画 开始前 设置值，然后开始动画，过程中不要尝试去改变值，就可以了。
+        <DoubleAnimation From="{Binding Path=RightOri,Source=Self}" To="{Binding Path=RightFinal,Source=Self}"
  RepeatBehavior="Forever" Duration="0:0:1" Storyboard.TargetProperty="Left"/>
-
-        </Storyboard>
-
+        </Storyboard>-->
 
     </base:NotifierViewBase.Resources>
-    <base:NotifierViewBase.Triggers>
-        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
-            <BeginStoryboard  Storyboard="{StaticResource OnLoaded4}"/>
-        </EventTrigger>
-    </base:NotifierViewBase.Triggers>
-
+   
     <Grid>
         <Grid>
             <Grid.ColumnDefinitions>
