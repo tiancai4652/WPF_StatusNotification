@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Windows;
 
 namespace WPF_StatusNotification.Base
 {
-    public class WindowBindingBase : INotifyPropertyChanged
+    public class WindowBindingBase : Window,INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName = "")

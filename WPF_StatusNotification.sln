@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.29503.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_StatusNotification", "WPF_StatusNotification.csproj", "{1933107A-DF27-4C69-8D2E-5BD26AF8A707}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WPF_Animation", "WPF_Animation", "{20A4A907-4E6D-4A64-A28A-78CD97009B43}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Official1", "..\Official1\Official1.csproj", "{1FEF3530-E52A-4367-92B3-05BE0642088E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +19,16 @@ Global
 		{1933107A-DF27-4C69-8D2E-5BD26AF8A707}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1933107A-DF27-4C69-8D2E-5BD26AF8A707}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1933107A-DF27-4C69-8D2E-5BD26AF8A707}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FEF3530-E52A-4367-92B3-05BE0642088E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FEF3530-E52A-4367-92B3-05BE0642088E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FEF3530-E52A-4367-92B3-05BE0642088E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FEF3530-E52A-4367-92B3-05BE0642088E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1FEF3530-E52A-4367-92B3-05BE0642088E} = {20A4A907-4E6D-4A64-A28A-78CD97009B43}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D4D896B4-014F-4798-984A-2961E14630FF}

@@ -6,7 +6,7 @@ using System.Windows;
 
 namespace WPF_StatusNotification.Base
 {
-    public class NotifierViewBase:Window
+    public class NotifierViewBase: WindowBindingBase
     {
 
     }

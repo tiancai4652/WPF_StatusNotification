@@ -57,6 +57,7 @@
     <Compile Include="Base\NotifierViewBase.cs" />
     <Compile Include="Model\NotifierModel.cs" />
     <Compile Include="ViewModel\NotifierViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="View\NotifierView.xaml.cs">
       <DependentUpon>NotifierView.xaml</DependentUpon>
     </Compile>
@@ -100,6 +101,11 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resource\os_win_dark_512px_1097163_easyicon.net.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Lights_1024px_1184578_easyicon.net.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
