@@ -27,7 +27,7 @@ namespace WPF_StatusNotification.Base
             }
         }
 
-        double _RightFinal = System.Windows.SystemParameters.WorkArea.Right-1000;
+        double _RightFinal = System.Windows.SystemParameters.WorkArea.Right;
         public double RightFinal
         {
             get

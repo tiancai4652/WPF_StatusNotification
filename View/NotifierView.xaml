@@ -75,14 +75,7 @@
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
 
-        <Storyboard x:Key="OnLoaded2" >
-            <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" Storyboard.TargetName="notifierViewBase"
-                             From="{Binding XPath=RightOri,Source=Self }"
-                             To="{Binding XPath=RightFinal,Source=Self}"
-                             Duration="{Binding XPath=DurationTime,Source=Self}"
-                             >
-            </DoubleAnimation>
-        </Storyboard>
+     
         <Storyboard x:Key="OnLoaded3">
 
             <DoubleAnimation From="0.1" To="1.0"
@@ -90,11 +83,18 @@
 
         </Storyboard>
 
+        <Storyboard x:Key="OnLoaded4">
+
+            <DoubleAnimation From="1920" To="1500"
+ RepeatBehavior="Forever" Duration="0:0:1" Storyboard.TargetProperty="Left"/>
+
+        </Storyboard>
+
 
     </base:NotifierViewBase.Resources>
     <base:NotifierViewBase.Triggers>
         <EventTrigger RoutedEvent="FrameworkElement.Loaded">
-            <BeginStoryboard x:Name="OnLoaded3_BeginStoryboard" Storyboard="{StaticResource OnLoaded3}"/>
+            <BeginStoryboard  Storyboard="{StaticResource OnLoaded4}"/>
         </EventTrigger>
     </base:NotifierViewBase.Triggers>
 
