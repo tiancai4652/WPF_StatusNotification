@@ -27,7 +27,7 @@ namespace WPF_StatusNotification.Base
             }
         }
 
-        double _RightFinal = System.Windows.SystemParameters.WorkArea.Right;
+        double _RightFinal = System.Windows.SystemParameters.WorkArea.Right-1000;
         public double RightFinal
         {
             get
@@ -38,6 +38,20 @@ namespace WPF_StatusNotification.Base
             {
                 _RightFinal = value;
                 OnPropertyChanged(nameof(RightFinal));
+            }
+        }
+
+        Duration _DurationTime = new Duration(TimeSpan.FromMilliseconds(500));
+        public Duration DurationTime
+        {
+            get
+            {
+                return _DurationTime;
+            }
+            set
+            {
+                _DurationTime = value;
+                OnPropertyChanged(nameof(DurationTime));
             }
         }
 

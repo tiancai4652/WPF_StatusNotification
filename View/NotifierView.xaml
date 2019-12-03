@@ -5,6 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_StatusNotification.View"
+                          DataContext="{Binding Source={StaticResource Locator},Path=NotifierVM}" 
                        xmlns:vm="clr-namespace:WPF_StatusNotification.ViewModel"
                       
         mc:Ignorable="d"
@@ -63,19 +64,29 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Storyboard x:Key="OnLoaded1">
+        <Storyboard x:Key="OnLoaded1" RepeatBehavior="3x" AutoReverse="True">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Canvas.Left)" Storyboard.TargetName="notifierViewBase">
-                <EasingDoubleKeyFrame KeyTime="0:0:0.00" Value="{Binding RightOri}"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.30" Value="{Binding RightFinal}"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.00" Value="{Binding XPath=RightOri,Source=Self }"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.10" Value="{Binding XPath=RightFinal,Source=Self}"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.20" Value="{Binding XPath=RightOri,Source=Self }"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.30" Value="{Binding XPath=RightFinal,Source=Self}"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.40" Value="{Binding XPath=RightOri,Source=Self }"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.50" Value="{Binding XPath=RightFinal,Source=Self}"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
 
+        <Storyboard x:Key="OnLoaded2" >
+            <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" Storyboard.TargetName="notifierViewBase"
+                             From="{Binding XPath=RightOri,Source=Self }"
+                             To="{Binding XPath=RightFinal,Source=Self}"
+                             Duration="{Binding XPath=DurationTime,Source=Self}"
+                             >
+            </DoubleAnimation>
+        </Storyboard>
+
+
     </base:NotifierViewBase.Resources>
-    <base:NotifierViewBase.Triggers>
-        <EventTrigger RoutedEvent="FrameworkElement.Loaded" SourceName="notifierViewBase">
-            <BeginStoryboard Storyboard="{StaticResource OnLoaded1}"/>
-        </EventTrigger>
-    </base:NotifierViewBase.Triggers>
+ 
     <Grid>
         <Grid>
             <Grid.ColumnDefinitions>
