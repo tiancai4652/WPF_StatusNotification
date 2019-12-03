@@ -22,6 +22,8 @@ namespace WPF_StatusNotification.ViewModel
             set { _Context = value; OnPropertyChanged(nameof(Context)); }
         }
 
+        public bool IsSoundEnabled => true;
+
 
         //double _Height = 150;
         //public double Height
@@ -37,6 +39,10 @@ namespace WPF_StatusNotification.ViewModel
         //    set { _Width = value; OnPropertyChanged(nameof(Width)); }
         //}
 
-
+        public NotifierViewModel()
+        {
+            Width = 450;
+            Height = 150;
+        }
     }
 }

@@ -8,7 +8,7 @@
                        xmlns:vm="clr-namespace:WPF_StatusNotification.ViewModel"
                          DataContext="{Binding Source={StaticResource Locator},Path=NotifierVM}"
         mc:Ignorable="d"
-        Title="NotifierView" Height="150" Width="300" AllowsTransparency="True" Background="#FF131212" Opacity="0.8" WindowStyle="None">
+        Title="NotifierView" Height="{Binding Height}" Width="{Binding Width}"  AllowsTransparency="True" Background="#FF131212" Opacity="0.8" WindowStyle="None">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="60"/>
