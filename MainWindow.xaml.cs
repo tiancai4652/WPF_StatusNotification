@@ -11,6 +11,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPF_StatusNotification.Base;
+using WPF_StatusNotification.View;
 
 namespace WPF_StatusNotification
 {
@@ -22,6 +24,11 @@ namespace WPF_StatusNotification
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            new NotifierView().Show();
         }
     }
 }
