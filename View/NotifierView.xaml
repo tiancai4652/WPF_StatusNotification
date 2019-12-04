@@ -102,10 +102,10 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Grid >
-                        <TextBlock HorizontalAlignment="Left" TextAlignment="Justify" VerticalAlignment="Top"  FontSize="15" FontWeight="Bold" Foreground="White"  Text="{Binding Header}" FontFamily="Microsoft YaHei"></TextBlock>
+                        <TextBlock HorizontalAlignment="Left" TextAlignment="Justify" VerticalAlignment="Top"  FontSize="15" FontWeight="Bold" Foreground="White"  Text="{Binding Header}" ></TextBlock>
                     </Grid>
                     <Grid  Grid.Row="1">
-                        <TextBlock HorizontalAlignment="Left" TextAlignment="Justify"  MaxWidth="300" VerticalAlignment="Top" TextWrapping="Wrap" FontSize="15"  Foreground="#FFCDC9C9" FontFamily="Microsoft YaHei"  Text="{Binding Context}"></TextBlock>
+                        <TextBlock HorizontalAlignment="Left" TextAlignment="Justify"  MaxWidth="300" VerticalAlignment="Top" TextWrapping="Wrap" FontSize="15"  Foreground="#FFCDC9C9"   Text="{Binding Context}"></TextBlock>
                     </Grid>
                 </Grid>
                 <Grid Grid.Column="2">
