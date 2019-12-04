@@ -76,24 +76,26 @@ namespace WPF_StatusNotification.Base
             notifier.BeginAnimation(Window.LeftProperty, animation);
 
 
-
-            Task.Factory.StartNew(delegate
+            if (notifier.IsAutoClose)
             {
-                int seconds = 5;//通知持续5s后消失
+                Task.Factory.StartNew(delegate
+                {
+                    int seconds = 5;//通知持续5s后消失
                 System.Threading.Thread.Sleep(TimeSpan.FromSeconds(seconds));
                 //Invoke到主进程中去执行
                 notifier.Dispatcher.Invoke(new Action(() =>
-                {
                     {
-                        animation = new DoubleAnimation();
-                        animation.Duration = new Duration(TimeSpan.FromMilliseconds(500));
-                        animation.Completed += (s, a) => { notifier.Close(); };
-                        animation.From = notifier.RightTo;
-                        animation.To = notifier.RightFrom;
-                        notifier.BeginAnimation(Window.LeftProperty, animation);
-                    }
-                }));
-            });
+                        {
+                            animation = new DoubleAnimation();
+                            animation.Duration = new Duration(TimeSpan.FromMilliseconds(500));
+                            animation.Completed += (s, a) => { notifier.Close(); };
+                            animation.From = notifier.RightTo;
+                            animation.To = notifier.RightFrom;
+                            notifier.BeginAnimation(Window.LeftProperty, animation);
+                        }
+                    }));
+                });
+            }
         }
     }
 }

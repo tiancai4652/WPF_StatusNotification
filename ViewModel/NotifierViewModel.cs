@@ -22,8 +22,6 @@ namespace WPF_StatusNotification.ViewModel
             set { _Context = value; OnPropertyChanged(nameof(Context)); }
         }
 
-        public bool IsSoundEnabled => true;
-
         double _Opacity = 0.9;
         public double Opacity
         {
