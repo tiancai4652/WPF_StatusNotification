@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Base\ShowOptions.cs" />
     <Compile Include="Base\WindowBindingBase.cs" />
     <Compile Include="Base\NotifierViewBase.cs" />
     <Compile Include="ViewModel\NotifierViewModel.cs" />

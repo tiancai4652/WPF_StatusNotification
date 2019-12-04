@@ -12,27 +12,19 @@ namespace WPF_StatusNotification.Base
 {
     public class NotifierViewBase : Window
     {
+        public ShowOptions Options { get; set; } = new ShowOptions();
 
-        public bool IsEnabledSounds { get; set; } = true;
-        public bool IsAutoClose { get; set; } = true;
-        /// <summary>
-        /// 配合IsAutoClose，window显示时间
-        /// </summary>
-        public int ShowTimeMS { get; set; } = 500;
-        public Action BeforeAnimation { get; set; }
-        public Action AfterAnimation { get; set; }
-        public double NotifierTop { get; set; } = double.NaN;
-        public double RightFrom { get; set; } = double.NaN;
-        public double RightTo { get; set; } = double.NaN;
-        Duration AnamitionDurationTime { get; set; } = new Duration(TimeSpan.FromMilliseconds(500));
-
-        public static void Show(NotifierViewBase notifier)
+        public static void Show(NotifierViewBase notifier, ShowOptions options = null)
         {
             if (notifier == null)
             {
                 return;
             }
-            if (notifier.IsEnabledSounds)
+            if (options != null)
+            {
+                notifier.Options = options;
+            }
+            if (notifier.Options.IsEnabledSounds)
             {
                 SystemSounds.Asterisk.Play();
             }
@@ -48,52 +40,52 @@ namespace WPF_StatusNotification.Base
 
             notifier.UpdateLayout();
 
-            if (notifier.BeforeAnimation != null)
+            if (notifier.Options.BeforeAnimation != null)
             {
-                notifier.BeforeAnimation.Invoke();
+                notifier.Options.BeforeAnimation.Invoke();
             }
 
             DoubleAnimation animation = new DoubleAnimation();
-            if (double.IsNaN(notifier.NotifierTop))
+            if (double.IsNaN(notifier.Options.NotifierTop))
             {
                 notifier.Top = System.Windows.SystemParameters.WorkArea.Height - notifier.ActualHeight;
             }
             else
             {
-                notifier.Top = notifier.NotifierTop;
+                notifier.Top = notifier.Options.NotifierTop;
             }
 
-            if (double.IsNaN(notifier.RightTo))
-                notifier.RightTo = System.Windows.SystemParameters.WorkArea.Right - notifier.ActualWidth;
+            if (double.IsNaN(notifier.Options.RightTo))
+                notifier.Options.RightTo = System.Windows.SystemParameters.WorkArea.Right - notifier.ActualWidth;
 
-            if (double.IsNaN(notifier.RightFrom))
-                notifier.RightFrom = System.Windows.SystemParameters.WorkArea.Right;
+            if (double.IsNaN(notifier.Options.RightFrom))
+                notifier.Options.RightFrom = System.Windows.SystemParameters.WorkArea.Right;
 
-            animation.Duration = notifier.AnamitionDurationTime;
-            animation.From = notifier.RightFrom;
-            animation.To = notifier.RightTo;
+            animation.Duration = notifier.Options.AnamitionDurationTime;
+            animation.From = notifier.Options.RightFrom;
+            animation.To = notifier.Options.RightTo;
 
             notifier.BeginAnimation(Window.LeftProperty, animation);
 
 
-            if (notifier.IsAutoClose)
+            if (notifier.Options.IsAutoClose)
             {
                 Task.Factory.StartNew(delegate
                 {
                     int seconds = 5;//通知持续5s后消失
-                System.Threading.Thread.Sleep(TimeSpan.FromSeconds(seconds));
-                //Invoke到主进程中去执行
-                notifier.Dispatcher.Invoke(new Action(() =>
-                    {
+                    System.Threading.Thread.Sleep(TimeSpan.FromSeconds(seconds));
+                    //Invoke到主进程中去执行
+                    notifier.Dispatcher.Invoke(new Action(() =>
                         {
-                            animation = new DoubleAnimation();
-                            animation.Duration = new Duration(TimeSpan.FromMilliseconds(500));
-                            animation.Completed += (s, a) => { notifier.Close(); };
-                            animation.From = notifier.RightTo;
-                            animation.To = notifier.RightFrom;
-                            notifier.BeginAnimation(Window.LeftProperty, animation);
-                        }
-                    }));
+                            {
+                                animation = new DoubleAnimation();
+                                animation.Duration = new Duration(TimeSpan.FromMilliseconds(500));
+                                animation.Completed += (s, a) => { notifier.Close(); };
+                                animation.From = notifier.Options.RightTo;
+                                animation.To = notifier.Options.RightFrom;
+                                notifier.BeginAnimation(Window.LeftProperty, animation);
+                            }
+                        }));
                 });
             }
         }
