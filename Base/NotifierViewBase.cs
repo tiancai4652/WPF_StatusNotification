@@ -40,11 +40,6 @@ namespace WPF_StatusNotification.Base
 
             notifier.UpdateLayout();
 
-            if (notifier.Options.BeforeAnimation != null)
-            {
-                notifier.Options.BeforeAnimation.Invoke();
-            }
-
             DoubleAnimation animation = new DoubleAnimation();
             if (double.IsNaN(notifier.Options.NotifierTop))
             {
@@ -72,14 +67,13 @@ namespace WPF_StatusNotification.Base
             {
                 Task.Factory.StartNew(delegate
                 {
-                    int seconds = notifier.Options.ShowTimeMS;//通知持续5s后消失
+                    int seconds = notifier.Options.ShowTimeMS;
                     System.Threading.Thread.Sleep(TimeSpan.FromMilliseconds(seconds));
-                    //Invoke到主进程中去执行
                     notifier.Dispatcher.Invoke(new Action(() =>
                         {
                             {
                                 animation = new DoubleAnimation();
-                                animation.Duration = new Duration(TimeSpan.FromMilliseconds(500));
+                                animation.Duration = notifier.Options.AnamitionDurationTime;
                                 animation.Completed += (s, a) => { notifier.Close(); };
                                 animation.From = notifier.Options.RightTo;
                                 animation.To = notifier.Options.RightFrom;

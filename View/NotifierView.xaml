@@ -109,7 +109,7 @@
                     </Grid>
                 </Grid>
                 <Grid Grid.Column="2">
-                    <Button Style="{DynamicResource ButtonStyle1}" x:Name="button" Margin="10" Width="20" Height="15" Background="Transparent" HorizontalAlignment="Right" VerticalAlignment="Top">
+                    <Button Style="{DynamicResource ButtonStyle1}" x:Name="button" Margin="0,10" Width="40" Height="20" Background="Transparent" HorizontalAlignment="Right" VerticalAlignment="Top">
                         <Image x:Name="image" Source="/WPF_StatusNotification;component/Resource/arrow1.png"  ></Image>
                     </Button>
                 </Grid>
