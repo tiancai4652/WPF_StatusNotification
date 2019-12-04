@@ -55,6 +55,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Base\MemoryMapFileHelper.cs" />
+    <Compile Include="Base\MyRectangular.cs" />
     <Compile Include="Base\Notifier.cs" />
     <Compile Include="Base\ShowOptions.cs" />
     <Compile Include="Base\WindowBindingBase.cs" />

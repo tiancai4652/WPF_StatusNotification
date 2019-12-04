@@ -16,8 +16,6 @@ namespace WPF_StatusNotification.Base
     {
         public ShowOptions Options { get; set; } = new ShowOptions();
 
-
-
         internal static void OverrideLoaded(object sender, RoutedEventArgs e)
         {
             var notifier = sender as NotifierViewBase;
@@ -25,9 +23,19 @@ namespace WPF_StatusNotification.Base
             notifier.UpdateLayout();
 
             DoubleAnimation animation = new DoubleAnimation();
+
+            var top = System.Windows.SystemParameters.WorkArea.Height;
+            var helper= MemoryMapFileHelper<List<MyRectangular>>.GetHelper();
+            var list = helper.Read();
+            if (list!=null)
+            {
+                double topExisted = list.Select(t => t.Top).Sum()+10;
+                top -= topExisted;
+            }
+
             if (double.IsNaN(notifier.Options.NotifierTop))
             {
-                notifier.Top = System.Windows.SystemParameters.WorkArea.Height - notifier.ActualHeight;
+                notifier.Top = top - notifier.ActualHeight;
             }
             else
             {
