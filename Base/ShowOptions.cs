@@ -13,7 +13,7 @@ namespace WPF_StatusNotification.Base
         /// <summary>
         /// 配合IsAutoClose，window显示时间
         /// </summary>
-        public int ShowTimeMS { get; set; } = 500;
+        public int ShowTimeMS { get; set; } = 5000;
         public Action BeforeAnimation { get; set; }
         public Action AfterAnimation { get; set; }
         public double NotifierTop { get; set; } = double.NaN;

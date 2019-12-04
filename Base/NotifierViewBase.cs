@@ -72,8 +72,8 @@ namespace WPF_StatusNotification.Base
             {
                 Task.Factory.StartNew(delegate
                 {
-                    int seconds = 5;//通知持续5s后消失
-                    System.Threading.Thread.Sleep(TimeSpan.FromSeconds(seconds));
+                    int seconds = notifier.Options.ShowTimeMS;//通知持续5s后消失
+                    System.Threading.Thread.Sleep(TimeSpan.FromMilliseconds(seconds));
                     //Invoke到主进程中去执行
                     notifier.Dispatcher.Invoke(new Action(() =>
                         {
