@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace WPF_StatusNotification.Base
 {
-    public class WindowBindingBase : Window,INotifyPropertyChanged
+    public class WindowBindingBase : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName = "")

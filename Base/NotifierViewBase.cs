@@ -10,7 +10,7 @@ using System.Windows.Media.Animation;
 
 namespace WPF_StatusNotification.Base
 {
-    public class NotifierViewBase : WindowBindingBase
+    public class NotifierViewBase : Window
     {
 
         public bool IsEnabledSounds { get; set; } = true;

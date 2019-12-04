@@ -9,7 +9,7 @@
                        xmlns:vm="clr-namespace:WPF_StatusNotification.ViewModel"
                       
         mc:Ignorable="d"
-        Title="NotifierView" SizeToContent="WidthAndHeight"  AllowsTransparency="True" Background="#FF131212" Opacity="0.8" WindowStyle="None"  >
+        Title="NotifierView" SizeToContent="WidthAndHeight"  AllowsTransparency="True" Background="#FF131212" Opacity="{Binding Opacity}" WindowStyle="None"  >
     <base:NotifierViewBase.Resources>
         <Style x:Key="ButtonStyle1" TargetType="{x:Type Button}">
             <Setter Property="FocusVisualStyle">
@@ -102,10 +102,10 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Grid >
-                        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top"  FontSize="15" FontWeight="Bold" Foreground="White"  Text="{Binding Header}" FontFamily="Microsoft YaHei"></TextBlock>
+                        <TextBlock HorizontalAlignment="Left" TextAlignment="Justify" VerticalAlignment="Top"  FontSize="15" FontWeight="Bold" Foreground="White"  Text="{Binding Header}" FontFamily="Microsoft YaHei"></TextBlock>
                     </Grid>
                     <Grid  Grid.Row="1">
-                        <TextBlock HorizontalAlignment="Left" MaxWidth="300" VerticalAlignment="Top" TextWrapping="Wrap" FontSize="15"  Foreground="#FFCDC9C9" FontFamily="Microsoft YaHei"  Text="{Binding Context}"></TextBlock>
+                        <TextBlock HorizontalAlignment="Left" TextAlignment="Justify"  MaxWidth="300" VerticalAlignment="Top" TextWrapping="Wrap" FontSize="15"  Foreground="#FFCDC9C9" FontFamily="Microsoft YaHei"  Text="{Binding Context}"></TextBlock>
                     </Grid>
                 </Grid>
                 <Grid Grid.Column="2">

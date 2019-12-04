@@ -6,16 +6,16 @@ using WPF_StatusNotification.Base;
 
 namespace WPF_StatusNotification.ViewModel
 {
-    public class NotifierViewModel : NotifierViewBase
+    public class NotifierViewModel : WindowBindingBase
     {
-        String _Header="Header";
+        String _Header = "Header";
         public String Header
         {
             get { return _Header; }
             set { _Header = value; OnPropertyChanged(nameof(Header)); }
         }
 
-        String _Context="Context";
+        String _Context = "Context";
         public String Context
         {
             get { return _Context; }
@@ -24,25 +24,11 @@ namespace WPF_StatusNotification.ViewModel
 
         public bool IsSoundEnabled => true;
 
-
-        //double _Height = 150;
-        //public double Height
-        //{
-        //    get { return _Height; }
-        //    set { _Height = value; OnPropertyChanged(nameof(Height)); }
-        //}
-
-        //double _Width = 300;
-        //public double Width
-        //{
-        //    get { return _Width; }
-        //    set { _Width = value; OnPropertyChanged(nameof(Width)); }
-        //}
-
-        public NotifierViewModel()
+        double _Opacity = 0.9;
+        public double Opacity
         {
-            Width = 450;
-            Height = 150;
+            get { return _Opacity; }
+            set { _Opacity = value; OnPropertyChanged(nameof(Opacity)); }
         }
     }
 }
