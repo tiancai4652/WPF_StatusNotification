@@ -5,7 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_StatusNotification.View"
-                        DataContext="{Binding Source={StaticResource Locator},Path=NotifierVM}"
+                       
                        xmlns:vm="clr-namespace:WPF_StatusNotification.ViewModel"
                       
         mc:Ignorable="d"
