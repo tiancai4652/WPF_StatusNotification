@@ -29,8 +29,8 @@ namespace WPF_StatusNotification.View
 
         public NotifierView(NotifierViewModel viewModel)
         {
-            InitializeComponent();
             this.DataContext = viewModel;
+            InitializeComponent();
         }
 
         
