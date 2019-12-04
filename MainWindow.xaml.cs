@@ -32,7 +32,11 @@ namespace WPF_StatusNotification
             NotifierViewModel viewModel = new NotifierViewModel();
             viewModel.Header = "ACal校准软件";
             viewModel.Context = "ACal用户您好，您机器上安装了360安全卫士、360杀毒等产品，它有时会误报并阻止软件正常操作，为了不影响您的工作，强烈建议您卸载360软件。 ";
-            NotifierViewBase.Show (new NotifierView(viewModel));
+
+            ShowOptions showOptions = new ShowOptions();
+            showOptions.IsAutoClose = false;
+
+            NotifierViewBase.Show (new NotifierView(viewModel), showOptions);
         }
     }
 }

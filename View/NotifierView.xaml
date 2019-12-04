@@ -9,7 +9,7 @@
                        xmlns:vm="clr-namespace:WPF_StatusNotification.ViewModel"
                       
         mc:Ignorable="d"
-        Title="NotifierView" SizeToContent="WidthAndHeight"  AllowsTransparency="True" Background="#FF131212" Opacity="{Binding Opacity}" WindowStyle="None"  >
+        Title="NotifierView" SizeToContent="WidthAndHeight"  AllowsTransparency="True" Background="#FF131212" Opacity="{Binding Opacity}" WindowStyle="None" ShowInTaskbar="False"  >
     <base:NotifierViewBase.Resources>
         <Style x:Key="ButtonStyle1" TargetType="{x:Type Button}">
             <Setter Property="FocusVisualStyle">
@@ -83,7 +83,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="80"/>
                     <ColumnDefinition/>
-                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="35"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0" >
                     <Grid.RowDefinitions>
@@ -109,7 +109,7 @@
                     </Grid>
                 </Grid>
                 <Grid Grid.Column="2">
-                    <Button Style="{DynamicResource ButtonStyle1}" x:Name="button" Margin="0,10" Width="40" Height="20" Background="Transparent" HorizontalAlignment="Right" VerticalAlignment="Top">
+                    <Button ToolTip="Cancel" Name="CloseButton" Style="{DynamicResource ButtonStyle1}" Margin="5" Background="Transparent" HorizontalAlignment="Right" VerticalAlignment="Top" Click="CloseButton_Click">
                         <Image x:Name="image" Source="/WPF_StatusNotification;component/Resource/arrow1.png"  ></Image>
                     </Button>
                 </Grid>

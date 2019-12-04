@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Media;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
@@ -29,7 +31,11 @@ namespace WPF_StatusNotification.Base
                 SystemSounds.Asterisk.Play();
             }
 
-            notifier.Loaded += OverrideLoaded;
+            notifier.Loaded += NotifierViewBase.OverrideLoaded;
+            if (!notifier.Options.IsAutoClose)
+            {
+                notifier.Closing += OverrideClosing;
+            }
 
             notifier.Show();
         }
@@ -82,6 +88,23 @@ namespace WPF_StatusNotification.Base
                         }));
                 });
             }
+        }
+
+        static void OverrideClosing(object sender, CancelEventArgs e)
+        {
+            var notifier = sender as NotifierViewBase;
+            e.Cancel = true;
+            DoubleAnimation animation = new DoubleAnimation();
+            animation.Duration = notifier.Options.AnamitionDurationTime;
+            animation.Completed += (s, a) => { notifier.Closing -= OverrideClosing; notifier.Close(); };
+            animation.From = notifier.Options.RightTo;
+            animation.To = notifier.Options.RightFrom;
+            notifier.BeginAnimation(Window.LeftProperty, animation);
+        }
+
+        public void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

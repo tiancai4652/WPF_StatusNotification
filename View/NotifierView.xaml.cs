@@ -32,5 +32,7 @@ namespace WPF_StatusNotification.View
             InitializeComponent();
             this.DataContext = viewModel;
         }
+
+        
     }
 }
