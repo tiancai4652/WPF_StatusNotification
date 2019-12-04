@@ -92,7 +92,7 @@
                     </Grid.RowDefinitions>
 
                     <Grid Margin="0,20,0,0">
-                        <Image  Width="30" Height="30" Opacity="{Binding Path=Opacity,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type base:NotifierViewBase}}}" Source="/WPF_StatusNotification;component/Resource/A (1).png"></Image>
+                        <Image  Width="30" Height="30" Opacity="{Binding Path=Opacity,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type base:NotifierViewBase}}}" Source="{Binding ImageSource}"></Image>
                     </Grid>
 
                 </Grid>
