@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Base\Notifier.cs" />
     <Compile Include="Base\ShowOptions.cs" />
     <Compile Include="Base\WindowBindingBase.cs" />
     <Compile Include="Base\NotifierViewBase.cs" />
@@ -124,6 +125,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resource\empty.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\error.png" />
+    <Resource Include="Resource\info.png" />
+    <Resource Include="Resource\success.png" />
+    <Resource Include="Resource\warn.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

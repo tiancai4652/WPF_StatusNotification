@@ -39,7 +39,7 @@ namespace WPF_StatusNotification
             ShowOptions showOptions = new ShowOptions();
             showOptions.IsAutoClose = false;
 
-            NotifierViewBase.Show (new NotifierView(viewModel), showOptions);
+            Notifier.ShowView (new NotifierView(viewModel), showOptions);
         }
     }
 }

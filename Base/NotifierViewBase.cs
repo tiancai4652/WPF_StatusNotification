@@ -16,31 +16,9 @@ namespace WPF_StatusNotification.Base
     {
         public ShowOptions Options { get; set; } = new ShowOptions();
 
-        public static void Show(NotifierViewBase notifier, ShowOptions options = null)
-        {
-            if (notifier == null)
-            {
-                return;
-            }
-            if (options != null)
-            {
-                notifier.Options = options;
-            }
-            if (notifier.Options.IsEnabledSounds)
-            {
-                SystemSounds.Asterisk.Play();
-            }
 
-            notifier.Loaded += NotifierViewBase.OverrideLoaded;
-            if (!notifier.Options.IsAutoClose)
-            {
-                notifier.Closing += OverrideClosing;
-            }
 
-            notifier.Show();
-        }
-
-        static void OverrideLoaded(object sender, RoutedEventArgs e)
+        internal static void OverrideLoaded(object sender, RoutedEventArgs e)
         {
             var notifier = sender as NotifierViewBase;
 
@@ -90,7 +68,7 @@ namespace WPF_StatusNotification.Base
             }
         }
 
-        static void OverrideClosing(object sender, CancelEventArgs e)
+        internal static void OverrideClosing(object sender, CancelEventArgs e)
         {
             var notifier = sender as NotifierViewBase;
             e.Cancel = true;
