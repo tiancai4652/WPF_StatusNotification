@@ -6,6 +6,7 @@ using System.Text;
 using System.Windows.Media.Imaging;
 using ToastNotification.View;
 using ToastNotification.ViewModel;
+using System.Windows;
 
 namespace ToastNotification.Base
 {
@@ -31,7 +32,16 @@ namespace ToastNotification.Base
             {
                 SystemSounds.Asterisk.Play();
             }
-
+            if (view.Options.IsFixedSizeOrContentToWH)
+            {
+                view.SizeToContent = SizeToContent.Manual;
+                view.Width = view.Options.Width;
+                view.Height = view.Options.Height;
+            }
+            else
+            {
+                view.SizeToContent = SizeToContent.WidthAndHeight;
+            }
             view.Loaded += OverrideLoaded;
             if (!view.Options.IsAutoClose)
             {

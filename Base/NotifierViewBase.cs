@@ -23,16 +23,16 @@ namespace ToastNotification.Base
             var notifier = sender as NotifierViewBase;
 
 
-            if (notifier.Options.IsFixedSizeOrContentToWH)
-            {
-                notifier.SizeToContent = SizeToContent.Manual;
-                notifier.Width = notifier.Options.Width;
-                notifier.Height = notifier.Options.Height;
-            }
-            else
-            {
-                notifier.SizeToContent = SizeToContent.WidthAndHeight;
-            }
+            //if (notifier.Options.IsFixedSizeOrContentToWH)
+            //{
+            //    notifier.SizeToContent = SizeToContent.Manual;
+            //    notifier.Width = notifier.Options.Width;
+            //    notifier.Height = notifier.Options.Height;
+            //}
+            //else
+            //{
+            //    notifier.SizeToContent = SizeToContent.WidthAndHeight;
+            //}
             notifier.UpdateLayout();
             notifier.myRectangular = new MyRectangular() { Height = notifier.ActualHeight };
 
