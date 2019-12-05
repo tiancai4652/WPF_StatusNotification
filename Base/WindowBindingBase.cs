@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 
-namespace WPF_StatusNotification.Base
+namespace ToastNotification.Base
 {
     public class WindowBindingBase : INotifyPropertyChanged
     {

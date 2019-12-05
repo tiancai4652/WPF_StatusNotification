@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using WPF_StatusNotification.Base;
+using ToastNotification.Base;
 
-namespace WPF_StatusNotification.ViewModel
+namespace ToastNotification.ViewModel
 {
     public class NotifierViewModel : WindowBindingBase
     {
@@ -31,7 +31,7 @@ namespace WPF_StatusNotification.ViewModel
             set { _Opacity = value; OnPropertyChanged(nameof(Opacity)); }
         }
 
-        string _ImageSourcePath= "/WPF_StatusNotification;component/Resource/empty.png";
+        string _ImageSourcePath= "/ToastNotification;component/Resource/empty.png";
         public string ImageSourcePath
         {
             get { return _ImageSourcePath; }
@@ -44,7 +44,7 @@ namespace WPF_StatusNotification.ViewModel
             }
         }
 
-        ImageSource _ImageSource= new BitmapImage(new Uri("/WPF_StatusNotification;component/Resource/empty.png", UriKind.Relative));
+        ImageSource _ImageSource= new BitmapImage(new Uri("/ToastNotification;component/Resource/empty.png", UriKind.Relative));
         /// <summary>
         /// 请设置ImageSourcePath而不是这个
         /// </summary>

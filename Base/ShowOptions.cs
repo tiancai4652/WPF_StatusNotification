@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 
-namespace WPF_StatusNotification.Base
+namespace ToastNotification.Base
 {
     public class ShowOptions
     {
@@ -36,5 +36,17 @@ namespace WPF_StatusNotification.Base
         /// 动画执行时间
         /// </summary>
         public Duration AnamitionDurationTime { get; set; } = new Duration(TimeSpan.FromMilliseconds(500));
+        /// <summary>
+        /// 是否是固定大小(W:300 h:150),否则为自适应大小
+        /// </summary>
+        public bool IsFixedSizeOrContentToWH { get; set; } = true;
+        /// <summary>
+        /// FixedSize时的高度，默认150
+        /// </summary>
+        public Double Height { get; set; } = 150;
+        /// <summary>
+        /// FixedSize时的宽度，默认350
+        /// </summary>
+        public Double Width { get; set; } = 350;
     }
 }

@@ -1,13 +1,13 @@
-﻿<base:NotifierViewBase x:Name="notifierViewBase" x:Class="WPF_StatusNotification.View.NotifierView"
+﻿<base:NotifierViewBase x:Name="notifierViewBase" x:Class="ToastNotification.View.NotifierView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                  xmlns:base="clr-namespace:WPF_StatusNotification.Base"
+                  xmlns:base="clr-namespace:ToastNotification.Base"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WPF_StatusNotification.View"
+        xmlns:local="clr-namespace:ToastNotification.View"
                        
-                       xmlns:vm="clr-namespace:WPF_StatusNotification.ViewModel"
-                      
+                       xmlns:vm="clr-namespace:ToastNotification.ViewModel"
+                    Width="350" Height="150" 
         mc:Ignorable="d"
         Title="NotifierView" SizeToContent="WidthAndHeight"  AllowsTransparency="True" Background="#FF131212" Opacity="{Binding Opacity}" WindowStyle="None" ShowInTaskbar="False"  >
     <!--DataContext="{Binding Source={StaticResource Locator},Path=NotifierVM}"-->
@@ -79,7 +79,7 @@
             <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="image" Storyboard.TargetProperty="(Image.Source)">
                 <DiscreteObjectKeyFrame KeyTime="00:00:00">
                     <DiscreteObjectKeyFrame.Value>
-                        <BitmapImage UriSource="/WPF_StatusNotification;component/Resource/arrow2.png" />
+                        <BitmapImage UriSource="/ToastNotification;component/Resource/arrow2.png" />
                     </DiscreteObjectKeyFrame.Value>
                 </DiscreteObjectKeyFrame>
             </ObjectAnimationUsingKeyFrames>
@@ -88,7 +88,7 @@
             <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="image" Storyboard.TargetProperty="(Image.Source)">
                 <DiscreteObjectKeyFrame KeyTime="00:00:00">
                     <DiscreteObjectKeyFrame.Value>
-                        <BitmapImage UriSource="/WPF_StatusNotification;component/Resource/arrow1.png" />
+                        <BitmapImage UriSource="/ToastNotification;component/Resource/arrow1.png" />
                     </DiscreteObjectKeyFrame.Value>
                 </DiscreteObjectKeyFrame>
             </ObjectAnimationUsingKeyFrames>
@@ -120,39 +120,39 @@
             <BeginStoryboard x:Name="Image_OnMouseLeave_BeginStoryboard" Storyboard="{StaticResource Image_OnMouseLeave}"/>
         </EventTrigger>
     </base:NotifierViewBase.Triggers>
-    <Grid x:Name="grid" d:IsHidden="True">
-        <Grid d:IsHidden="True">
+    <Grid x:Name="grid" >
+        <Grid >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="80"/>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="35"/>
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0" d:IsHidden="True" >
+            <Grid Grid.Column="0"  >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="60"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
-                <Grid Margin="0,20,0,0" d:IsHidden="True">
-                    <Image  Width="30" Height="30" Opacity="{Binding Path=Opacity,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type base:NotifierViewBase}}}" Source="{Binding ImageSource}" d:IsHidden="True"></Image>
+                <Grid Margin="0,20,0,0" >
+                    <Image  Width="30" Height="30" Opacity="{Binding Path=Opacity,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type base:NotifierViewBase}}}" Source="{Binding ImageSource}" ></Image>
                 </Grid>
 
             </Grid>
-            <Grid Grid.Column="1" Margin="0,20,0,20" d:IsHidden="True">
+            <Grid Grid.Column="1" Margin="0,20,0,20" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="20"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Grid d:IsHidden="True" >
-                    <TextBlock HorizontalAlignment="Left" TextAlignment="Justify" VerticalAlignment="Top"  FontSize="15" FontWeight="Bold" Foreground="White"  Text="{Binding Header}" d:IsHidden="True" ></TextBlock>
+                <Grid  >
+                    <TextBlock HorizontalAlignment="Left" TextAlignment="Justify" VerticalAlignment="Top"  FontSize="15" FontWeight="Bold" Foreground="White"  Text="{Binding Header}"  ></TextBlock>
                 </Grid>
-                <Grid  Grid.Row="1" d:IsHidden="True">
-                    <TextBlock HorizontalAlignment="Left" TextAlignment="Justify"  MaxWidth="300" VerticalAlignment="Top" TextWrapping="Wrap" FontSize="15"  Foreground="#FFCDC9C9"   Text="{Binding Context}" d:IsHidden="True"></TextBlock>
+                <Grid  Grid.Row="1" >
+                    <TextBlock HorizontalAlignment="Left" TextAlignment="Justify"  MaxWidth="300" VerticalAlignment="Top" TextWrapping="Wrap" FontSize="15"  Foreground="#FFCDC9C9"   Text="{Binding Context}" ></TextBlock>
                 </Grid>
             </Grid>
-            <Grid Grid.Column="2" d:IsHidden="True">
-                <Button ToolTip="Cancel" Name="CloseButton" Style="{DynamicResource ButtonStyle1}" Margin="5" Background="Transparent" HorizontalAlignment="Right" VerticalAlignment="Top" Click="CloseButton_Click" d:IsHidden="True">
-                    <Image x:Name="image" Source="/WPF_StatusNotification;component/Resource/arrow1.png" Visibility="Hidden"  />
+            <Grid Grid.Column="2" >
+                <Button ToolTip="Cancel" Name="CloseButton" Style="{DynamicResource ButtonStyle1}" Margin="5" Background="Transparent" HorizontalAlignment="Right" VerticalAlignment="Top" Click="CloseButton_Click" >
+                    <Image x:Name="image" Source="/ToastNotification;component/Resource/arrow1.png" Visibility="Visible"  />
                 </Button>
             </Grid>
         </Grid>

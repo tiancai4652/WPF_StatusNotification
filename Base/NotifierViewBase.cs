@@ -10,7 +10,7 @@ using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Media.Animation;
 
-namespace WPF_StatusNotification.Base
+namespace ToastNotification.Base
 {
     public class NotifierViewBase : Window
     {
@@ -21,6 +21,13 @@ namespace WPF_StatusNotification.Base
         internal static void OverrideLoaded(object sender, RoutedEventArgs e)
         {
             var notifier = sender as NotifierViewBase;
+
+            if (notifier.Options.IsFixedSizeOrContentToWH)
+            {
+                notifier.SizeToContent = SizeToContent.Manual;
+                notifier.Width = notifier.Options.Width;
+                notifier.Height = notifier.Options.Height;
+            }
 
             notifier.UpdateLayout();
             notifier.myRectangular = new MyRectangular() { Height = notifier.ActualHeight };

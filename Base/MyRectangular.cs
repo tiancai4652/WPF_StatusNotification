@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace WPF_StatusNotification.Base
+namespace ToastNotification.Base
 {
     [Serializable]
     public class MyRectangular

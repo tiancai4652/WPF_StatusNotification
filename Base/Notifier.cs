@@ -4,17 +4,17 @@ using System.Linq;
 using System.Media;
 using System.Text;
 using System.Windows.Media.Imaging;
-using WPF_StatusNotification.View;
-using WPF_StatusNotification.ViewModel;
+using ToastNotification.View;
+using ToastNotification.ViewModel;
 
-namespace WPF_StatusNotification.Base
+namespace ToastNotification.Base
 {
     public class Notifier:NotifierViewBase
     {
-        static string infoURI = "/WPF_StatusNotification;component/Resource/info.png";
-        static string errorURI = "/WPF_StatusNotification;component/Resource/error.png";
-        static string successURI = "/WPF_StatusNotification;component/Resource/success.png";
-        static string warnURI = "/WPF_StatusNotification;component/Resource/warn.png";
+        static string infoURI = "/ToastNotification;component/Resource/info.png";
+        static string errorURI = "/ToastNotification;component/Resource/error.png";
+        static string successURI = "/ToastNotification;component/Resource/success.png";
+        static string warnURI = "/ToastNotification;component/Resource/warn.png";
 
 
         public static void ShowView(NotifierViewBase view, ShowOptions options = null)

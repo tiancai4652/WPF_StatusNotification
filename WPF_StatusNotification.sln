@@ -3,19 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29503.13
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_StatusNotification", "WPF_StatusNotification.csproj", "{1933107A-DF27-4C69-8D2E-5BD26AF8A707}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToastNotification", "ToastNotification.csproj", "{1933107A-DF27-4C69-8D2E-5BD26AF8A707}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WPF_Animation", "WPF_Animation", "{20A4A907-4E6D-4A64-A28A-78CD97009B43}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sample", "Sample", "{D8BF5278-04DD-45E6-A33E-6C27371CFB25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Official1", "..\Official1\Official1.csproj", "{1FEF3530-E52A-4367-92B3-05BE0642088E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Code", "Code", "{2628EE04-BA7B-44DD-9E88-B001139232DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "..\Test\Test.csproj", "{AB67B54E-7821-4AA6-9C74-6BD8D65784B4}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestNuget", "..\TestNuget\TestNuget.csproj", "{389D31AE-C523-4ABB-836B-631C54B21005}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AsyncTest", "AsyncTest", "{F8036FD0-3549-4FDA-B671-C895816EE27A}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Official", "Official", "{F178B514-4839-41C2-8425-7E789F6AA397}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToastNotification_Demo", "..\ToastNotification_Demo\ToastNotification_Demo.csproj", "{168B0316-5FB1-4408-AA0F-C17241976646}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,25 +21,17 @@ Global
 		{1933107A-DF27-4C69-8D2E-5BD26AF8A707}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1933107A-DF27-4C69-8D2E-5BD26AF8A707}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1933107A-DF27-4C69-8D2E-5BD26AF8A707}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1FEF3530-E52A-4367-92B3-05BE0642088E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1FEF3530-E52A-4367-92B3-05BE0642088E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1FEF3530-E52A-4367-92B3-05BE0642088E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1FEF3530-E52A-4367-92B3-05BE0642088E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AB67B54E-7821-4AA6-9C74-6BD8D65784B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AB67B54E-7821-4AA6-9C74-6BD8D65784B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AB67B54E-7821-4AA6-9C74-6BD8D65784B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AB67B54E-7821-4AA6-9C74-6BD8D65784B4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{389D31AE-C523-4ABB-836B-631C54B21005}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{389D31AE-C523-4ABB-836B-631C54B21005}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{389D31AE-C523-4ABB-836B-631C54B21005}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{389D31AE-C523-4ABB-836B-631C54B21005}.Release|Any CPU.Build.0 = Release|Any CPU
+		{168B0316-5FB1-4408-AA0F-C17241976646}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{168B0316-5FB1-4408-AA0F-C17241976646}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{168B0316-5FB1-4408-AA0F-C17241976646}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{168B0316-5FB1-4408-AA0F-C17241976646}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{1FEF3530-E52A-4367-92B3-05BE0642088E} = {20A4A907-4E6D-4A64-A28A-78CD97009B43}
-		{F178B514-4839-41C2-8425-7E789F6AA397} = {F8036FD0-3549-4FDA-B671-C895816EE27A}
+		{1933107A-DF27-4C69-8D2E-5BD26AF8A707} = {2628EE04-BA7B-44DD-9E88-B001139232DB}
+		{168B0316-5FB1-4408-AA0F-C17241976646} = {D8BF5278-04DD-45E6-A33E-6C27371CFB25}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D4D896B4-014F-4798-984A-2961E14630FF}

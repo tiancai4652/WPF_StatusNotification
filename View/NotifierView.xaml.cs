@@ -12,10 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using WPF_StatusNotification.Base;
-using WPF_StatusNotification.ViewModel;
+using ToastNotification.Base;
+using ToastNotification.ViewModel;
 
-namespace WPF_StatusNotification.View
+namespace ToastNotification.View
 {
     /// <summary>
     /// NotifierView.xaml 的交互逻辑

@@ -7,7 +7,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading;
 
-namespace WPF_StatusNotification.Base
+namespace ToastNotification.Base
 {
     public class MemoryMapFileHelper<T> where T : class, new()
     {
@@ -24,7 +24,7 @@ namespace WPF_StatusNotification.Base
 
         public static MemoryMapFileHelper<List<MyRectangular>> GetHelper()
         {
-            return new MemoryMapFileHelper<List<MyRectangular>>("WPF_StatusNotification_Mutex", "WPF_StatusNotification_MemoryName");
+            return new MemoryMapFileHelper<List<MyRectangular>>("ToastNotification_Mutex", "ToastNotification_MemoryName");
         }
 
         public void Write(T entity)
