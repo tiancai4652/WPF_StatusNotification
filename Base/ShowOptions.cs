@@ -19,7 +19,7 @@ namespace WPF_StatusNotification.Base
         /// <summary>
         /// 配合IsAutoClose，window显示时间
         /// </summary>
-        public int ShowTimeMS { get; set; } = 5000;
+        public int AutoCloseShowTimeMS { get; set; } = 5000;
         /// <summary>
         /// 窗口显示位置(一般情况下不需要设置)
         /// </summary>

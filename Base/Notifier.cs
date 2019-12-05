@@ -52,7 +52,7 @@ namespace WPF_StatusNotification.Base
             ShowOptions showOptions = new ShowOptions()
             {
                 IsAutoClose = isAutoClose,
-                ShowTimeMS = showTimeIfAutoCloseMS
+                AutoCloseShowTimeMS = showTimeIfAutoCloseMS
             };
 
             var view = new NotifierView(viewModel);

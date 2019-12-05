@@ -57,7 +57,7 @@ namespace WPF_StatusNotification.Base
             {
                 Task.Factory.StartNew(delegate
                 {
-                    int seconds = notifier.Options.ShowTimeMS;
+                    int seconds = notifier.Options.AutoCloseShowTimeMS;
                     System.Threading.Thread.Sleep(TimeSpan.FromMilliseconds(seconds));
                     notifier.Dispatcher.Invoke(new Action(() =>
                         {
@@ -66,9 +66,7 @@ namespace WPF_StatusNotification.Base
                                 animation.Duration = notifier.Options.AnamitionDurationTime;
                                 animation.Completed += (s, a) =>
                                 {
-                                    var id = notifier.myRectangular?.ID;
-                                    notifier.Close();
-                                    RemoveFromStack(id);
+                                    notifier.CloseFun();
                                 };
                                 animation.From = notifier.Options.RightTo;
                                 animation.To = notifier.Options.RightFrom;
@@ -85,7 +83,7 @@ namespace WPF_StatusNotification.Base
             e.Cancel = true;
             DoubleAnimation animation = new DoubleAnimation();
             animation.Duration = notifier.Options.AnamitionDurationTime;
-            animation.Completed += (s, a) => { notifier.Closing -= OverrideClosing; notifier.Close(); };
+            animation.Completed += (s, a) => { notifier.Closing -= OverrideClosing; notifier.CloseFun(); };
             animation.From = notifier.Options.RightTo;
             animation.To = notifier.Options.RightFrom;
             notifier.BeginAnimation(Window.LeftProperty, animation);
@@ -93,9 +91,15 @@ namespace WPF_StatusNotification.Base
 
         public void CloseButton_Click(object sender, RoutedEventArgs e)
         {
+            CloseFun();
+        }
+
+        public void CloseFun()
+        {
             var id = myRectangular?.ID;
-            Close();
             RemoveFromStack(id);
+            Close();
+          
         }
 
         static double GetStackHeight()
