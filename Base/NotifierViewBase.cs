@@ -28,6 +28,10 @@ namespace ToastNotification.Base
                 notifier.Width = notifier.Options.Width;
                 notifier.Height = notifier.Options.Height;
             }
+            else
+            {
+                notifier.SizeToContent = SizeToContent.WidthAndHeight;
+            }
 
             notifier.UpdateLayout();
             notifier.myRectangular = new MyRectangular() { Height = notifier.ActualHeight };

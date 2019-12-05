@@ -9,7 +9,7 @@
                        xmlns:vm="clr-namespace:ToastNotification.ViewModel"
                     Width="350" Height="150" 
         mc:Ignorable="d"
-        Title="NotifierView" SizeToContent="WidthAndHeight"  AllowsTransparency="True" Background="#FF131212" Opacity="{Binding Opacity}" WindowStyle="None" ShowInTaskbar="False"  >
+        Title="NotifierView"   AllowsTransparency="True" Background="#FF131212" Opacity="{Binding Opacity}" WindowStyle="None" ShowInTaskbar="False"  >
     <!--DataContext="{Binding Source={StaticResource Locator},Path=NotifierVM}"-->
     <base:NotifierViewBase.Resources>
         <Style x:Key="ButtonStyle1" TargetType="{x:Type Button}">
@@ -152,7 +152,7 @@
             </Grid>
             <Grid Grid.Column="2" >
                 <Button ToolTip="Cancel" Name="CloseButton" Style="{DynamicResource ButtonStyle1}" Margin="5" Background="Transparent" HorizontalAlignment="Right" VerticalAlignment="Top" Click="CloseButton_Click" >
-                    <Image x:Name="image" Source="/ToastNotification;component/Resource/arrow1.png" Visibility="Visible"  />
+                    <Image x:Name="image" Source="/ToastNotification;component/Resource/arrow1.png" Visibility="Hidden"  />
                 </Button>
             </Grid>
         </Grid>

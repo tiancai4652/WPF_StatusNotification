@@ -56,7 +56,7 @@ namespace ToastNotification.Base
             };
 
             var view = new NotifierView(viewModel);
-            view.SizeToContent = System.Windows.SizeToContent.WidthAndHeight;
+            //view.SizeToContent = System.Windows.SizeToContent.WidthAndHeight;
             Notifier.ShowView(view, showOptions);
         }
 
