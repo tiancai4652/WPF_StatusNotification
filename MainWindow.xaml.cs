@@ -37,8 +37,8 @@ namespace WPF_StatusNotification
             //绝对路径
             //viewModel.ImageSourcePath = @"D:\GitHub2019\StatusNotification\Resource\A (1).png";
             ShowOptions showOptions = new ShowOptions();
-            showOptions.IsAutoClose = false;
-
+            showOptions.IsAutoClose = true;
+            showOptions.ShowTimeMS = 2000;
             Notifier.ShowView (new NotifierView(viewModel), showOptions);
         }
     }

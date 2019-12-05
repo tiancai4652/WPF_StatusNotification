@@ -16,22 +16,20 @@ namespace WPF_StatusNotification.Base
     {
         public ShowOptions Options { get; set; } = new ShowOptions();
 
+        MyRectangular myRectangular;
+
         internal static void OverrideLoaded(object sender, RoutedEventArgs e)
         {
             var notifier = sender as NotifierViewBase;
 
             notifier.UpdateLayout();
+            notifier.myRectangular = new MyRectangular() { Height = notifier.ActualHeight };
 
             DoubleAnimation animation = new DoubleAnimation();
 
-            var top = System.Windows.SystemParameters.WorkArea.Height;
-            var helper= MemoryMapFileHelper<List<MyRectangular>>.GetHelper();
-            var list = helper.Read();
-            if (list!=null)
-            {
-                double topExisted = list.Select(t => t.Top).Sum()+10;
-                top -= topExisted;
-            }
+
+            var top = System.Windows.SystemParameters.WorkArea.Height - GetStackHeight();
+            AddToStack(notifier);
 
             if (double.IsNaN(notifier.Options.NotifierTop))
             {
@@ -66,7 +64,12 @@ namespace WPF_StatusNotification.Base
                             {
                                 animation = new DoubleAnimation();
                                 animation.Duration = notifier.Options.AnamitionDurationTime;
-                                animation.Completed += (s, a) => { notifier.Close(); };
+                                animation.Completed += (s, a) =>
+                                {
+                                    var id = notifier.myRectangular?.ID;
+                                    notifier.Close();
+                                    RemoveFromStack(id);
+                                };
                                 animation.From = notifier.Options.RightTo;
                                 animation.To = notifier.Options.RightFrom;
                                 notifier.BeginAnimation(Window.LeftProperty, animation);
@@ -90,7 +93,52 @@ namespace WPF_StatusNotification.Base
 
         public void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            var id = myRectangular?.ID;
+            Close();
+            RemoveFromStack(id);
+        }
+
+        static double GetStackHeight()
+        {
+            var helper = MemoryMapFileHelper<List<MyRectangular>>.GetHelper();
+            var list = helper.Read();
+            if (list != null)
+            {
+                double topExisted = list.Select(t => t.Height).Sum() + list.Select(t => t.Space).Sum();
+                return topExisted;
+            }
+            return 0;
+        }
+
+        static void AddToStack(NotifierViewBase notifier)
+        {
+            var helper = MemoryMapFileHelper<List<MyRectangular>>.GetHelper();
+            var list = helper.Read();
+            if (list == null)
+            {
+                list = new List<MyRectangular>();
+            }
+            list.Add(notifier.myRectangular);
+            helper.Write(list);
+        }
+
+        static void RemoveFromStack(string id)
+        {
+            var helper = MemoryMapFileHelper<List<MyRectangular>>.GetHelper();
+            var list = helper.Read();
+            if (list != null)
+            {
+                var rec = list.FirstOrDefault(t => t.ID.Equals(id));
+                if (rec != null)
+                {
+                    rec.IsEmpty = true;
+                    if (list.All(t => t.IsEmpty))
+                    {
+                        list.Clear();
+                    }
+                    helper.Write(list);
+                }
+            }
         }
     }
 }
