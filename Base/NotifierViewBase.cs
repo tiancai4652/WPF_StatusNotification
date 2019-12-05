@@ -22,13 +22,17 @@ namespace ToastNotification.Base
         {
             var notifier = sender as NotifierViewBase;
 
+
             if (notifier.Options.IsFixedSizeOrContentToWH)
             {
                 notifier.SizeToContent = SizeToContent.Manual;
                 notifier.Width = notifier.Options.Width;
                 notifier.Height = notifier.Options.Height;
             }
-
+            else
+            {
+                notifier.SizeToContent = SizeToContent.WidthAndHeight;
+            }
             notifier.UpdateLayout();
             notifier.myRectangular = new MyRectangular() { Height = notifier.ActualHeight };
 
@@ -52,6 +56,7 @@ namespace ToastNotification.Base
 
             if (double.IsNaN(notifier.Options.RightFrom))
                 notifier.Options.RightFrom = System.Windows.SystemParameters.WorkArea.Right;
+
 
             animation.Duration = notifier.Options.AnamitionDurationTime;
             animation.From = notifier.Options.RightFrom;
