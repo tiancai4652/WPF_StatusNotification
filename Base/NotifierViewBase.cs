@@ -108,14 +108,14 @@ namespace ToastNotification.Base
         public void CloseFun()
         {
             var id = myRectangular?.ID;
-            RemoveFromStack(id);
             Close();
-          
+            RemoveFromStack(id);
+
         }
 
         static double GetStackHeight()
         {
-            var helper = MemoryMapFileHelper<List<MyRectangular>>.GetHelper();
+            var helper = MemoryMapFileHelper<List<MyRectangular>>.GetHelper(true);
             var list = helper.Read();
             if (list != null)
             {
@@ -127,7 +127,7 @@ namespace ToastNotification.Base
 
         static void AddToStack(NotifierViewBase notifier)
         {
-            var helper = MemoryMapFileHelper<List<MyRectangular>>.GetHelper();
+            var helper = MemoryMapFileHelper<List<MyRectangular>>.GetHelper(true);
             var list = helper.Read();
             if (list == null)
             {
@@ -139,7 +139,7 @@ namespace ToastNotification.Base
 
         static void RemoveFromStack(string id)
         {
-            var helper = MemoryMapFileHelper<List<MyRectangular>>.GetHelper();
+            var helper = MemoryMapFileHelper<List<MyRectangular>>.GetHelper(true);
             var list = helper.Read();
             if (list != null)
             {

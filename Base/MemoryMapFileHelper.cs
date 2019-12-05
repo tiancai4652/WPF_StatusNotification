@@ -14,17 +14,19 @@ namespace ToastNotification.Base
         public MemoryMappedFile MemoryMappedFile { get; set; }
         public string MutexName { get; set; }
         public int MemoryMappedFileSize { get; set; }
+        public bool IsNeedReadLock { get; set; } = false;
 
-        public MemoryMapFileHelper(string mutexName, string memoryName,int memoryMappedFileSize = 10 * 1024 * 1024)
+        public MemoryMapFileHelper(string mutexName, string memoryName, int memoryMappedFileSize = 10 * 1024 * 1024, bool isNeedReadLock = false)
         {
             MutexName = mutexName;
             MemoryMappedFileSize = memoryMappedFileSize;
             MemoryMappedFile = MemoryMappedFile.CreateOrOpen(memoryName, memoryMappedFileSize, MemoryMappedFileAccess.ReadWrite);
+            IsNeedReadLock = isNeedReadLock;
         }
 
-        public static MemoryMapFileHelper<List<MyRectangular>> GetHelper()
+        public static MemoryMapFileHelper<List<MyRectangular>> GetHelper(bool isNeedReadLock = false)
         {
-            return new MemoryMapFileHelper<List<MyRectangular>>("ToastNotification_Mutex", "ToastNotification_MemoryName");
+            return new MemoryMapFileHelper<List<MyRectangular>>("ToastNotification_Mutex", "ToastNotification_MemoryName", 10 * 1024 * 1024, isNeedReadLock);
         }
 
         public void Write(T entity)
@@ -47,6 +49,21 @@ namespace ToastNotification.Base
         }
 
         public T Read()
+        {
+            if (IsNeedReadLock)
+            {
+                using (Mutex mutex = new Mutex(false, MutexName))
+                {
+                    return ReadFun();
+                }
+            }
+            else
+            {
+                return ReadFun();
+            }
+        }
+
+        T ReadFun()
         {
             BinaryFormatter bf = new BinaryFormatter();
             T result;
