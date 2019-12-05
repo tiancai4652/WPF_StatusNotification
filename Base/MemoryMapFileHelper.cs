@@ -34,6 +34,7 @@ namespace ToastNotification.Base
             //用于多进程之间对同一块内存进行读写的锁
             using (Mutex mutex = new Mutex(false, MutexName))
             {
+                mutex.WaitOne();
                 BinaryFormatter bf = new BinaryFormatter();
                 byte[] buf = new byte[MemoryMappedFileSize];
                 using (var ms = new MemoryStream())
