@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ToastNotification.View"
                        
-                       xmlns:vm="clr-namespace:ToastNotification.ViewModel"
+                       xmlns:vm="clr-namespace:ToastNotification.ViewModel" Topmost="True"
                     Width="350" Height="150" 
         mc:Ignorable="d"
         Title="NotifierView"   AllowsTransparency="True" Background="#FF131212" Opacity="{Binding Opacity}" WindowStyle="None" ShowInTaskbar="False"  >

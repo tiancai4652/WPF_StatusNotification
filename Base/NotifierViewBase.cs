@@ -102,6 +102,7 @@ namespace ToastNotification.Base
 
         public void CloseButton_Click(object sender, RoutedEventArgs e)
         {
+            Closing -= OverrideClosing;
             CloseFun();
         }
 

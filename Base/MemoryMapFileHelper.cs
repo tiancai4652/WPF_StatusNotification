@@ -32,31 +32,33 @@ namespace ToastNotification.Base
         public void Write(T entity)
         {
             //用于多进程之间对同一块内存进行读写的锁
-            using (Mutex mutex = new Mutex(false, MutexName))
+
+            Mutex mutex = new Mutex(false, MutexName);
+            mutex.WaitOne();
+            BinaryFormatter bf = new BinaryFormatter();
+            byte[] buf = new byte[MemoryMappedFileSize];
+            using (var ms = new MemoryStream())
             {
-                mutex.WaitOne();
-                BinaryFormatter bf = new BinaryFormatter();
-                byte[] buf = new byte[MemoryMappedFileSize];
-                using (var ms = new MemoryStream())
-                {
-                    bf.Serialize(ms, entity);
-                    buf = ms.ToArray();
-                }
-                using (var view = MemoryMappedFile.CreateViewAccessor(0, MemoryMappedFileSize, MemoryMappedFileAccess.ReadWrite))
-                {
-                    view.WriteArray(0, buf, 0, buf.Count());
-                }
+                bf.Serialize(ms, entity);
+                buf = ms.ToArray();
             }
+            using (var view = MemoryMappedFile.CreateViewAccessor(0, MemoryMappedFileSize, MemoryMappedFileAccess.ReadWrite))
+            {
+                view.WriteArray(0, buf, 0, buf.Count());
+            }
+            mutex.ReleaseMutex();
         }
 
         public T Read()
         {
             if (IsNeedReadLock)
             {
-                using (Mutex mutex = new Mutex(false, MutexName))
-                {
-                    return ReadFun();
-                }
+                Mutex mutex = new Mutex(false, MutexName);
+
+                mutex.WaitOne();
+                T result = ReadFun();
+                mutex.ReleaseMutex();
+                return result;
             }
             else
             {
