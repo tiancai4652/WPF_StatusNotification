@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "..\Test\Test.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestNuget", "..\TestNuget\TestNuget.csproj", "{389D31AE-C523-4ABB-836B-631C54B21005}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AsyncTest", "AsyncTest", "{F8036FD0-3549-4FDA-B671-C895816EE27A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Official", "Official", "{F178B514-4839-41C2-8425-7E789F6AA397}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +45,7 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{1FEF3530-E52A-4367-92B3-05BE0642088E} = {20A4A907-4E6D-4A64-A28A-78CD97009B43}
+		{F178B514-4839-41C2-8425-7E789F6AA397} = {F8036FD0-3549-4FDA-B671-C895816EE27A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D4D896B4-014F-4798-984A-2961E14630FF}
