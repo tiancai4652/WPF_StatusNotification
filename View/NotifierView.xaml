@@ -75,6 +75,25 @@
                 <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Hidden}"/>
             </ObjectAnimationUsingKeyFrames>
         </Storyboard>
+        <Storyboard x:Key="Image_OnMouseEnter">
+            <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="image" Storyboard.TargetProperty="(Image.Source)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                    <DiscreteObjectKeyFrame.Value>
+                        <BitmapImage UriSource="/WPF_StatusNotification;component/Resource/arrow2.png" />
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="Image_OnMouseLeave">
+            <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="image" Storyboard.TargetProperty="(Image.Source)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                    <DiscreteObjectKeyFrame.Value>
+                        <BitmapImage UriSource="/WPF_StatusNotification;component/Resource/arrow1.png" />
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+
 
         <!--<Storyboard x:Key="OnLoaded4">
        https://social.msdn.microsoft.com/Forums/zh-CN/88fccc2d-bd7a-44f5-96aa-5d9c2ff19d43/2608027861209233246727492-storyboard?forum=wpfzhchs
@@ -89,45 +108,51 @@
     </base:NotifierViewBase.Resources>
     <base:NotifierViewBase.Triggers>
         <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="notifierViewBase">
-            <BeginStoryboard Storyboard="{StaticResource OnMouseEnter1}"/>
+            <BeginStoryboard x:Name="OnMouseEnter1_BeginStoryboard" Storyboard="{StaticResource OnMouseEnter1}"/>
         </EventTrigger>
         <EventTrigger RoutedEvent="UIElement.MouseLeave" SourceName="notifierViewBase">
             <BeginStoryboard x:Name="OnMouseLeave1_BeginStoryboard" Storyboard="{StaticResource OnMouseLeave1}"/>
         </EventTrigger>
+        <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="image">
+            <BeginStoryboard x:Name="Image_OnMouseEnter_BeginStoryboard" Storyboard="{StaticResource Image_OnMouseEnter}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="UIElement.MouseLeave" SourceName="image">
+            <BeginStoryboard x:Name="Image_OnMouseLeave_BeginStoryboard" Storyboard="{StaticResource Image_OnMouseLeave}"/>
+        </EventTrigger>
     </base:NotifierViewBase.Triggers>
-    <Grid x:Name="grid">
-        <Grid>
+    <Grid x:Name="grid" d:IsHidden="True">
+        <Grid d:IsHidden="True">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="80"/>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="35"/>
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0" >
+            <Grid Grid.Column="0" d:IsHidden="True" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="60"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
-                <Grid Margin="0,20,0,0">
-                    <Image  Width="30" Height="30" Opacity="{Binding Path=Opacity,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type base:NotifierViewBase}}}" Source="{Binding ImageSource}"></Image>
+                <Grid Margin="0,20,0,0" d:IsHidden="True">
+                    <Image  Width="30" Height="30" Opacity="{Binding Path=Opacity,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type base:NotifierViewBase}}}" Source="{Binding ImageSource}" d:IsHidden="True"></Image>
                 </Grid>
 
             </Grid>
-            <Grid Grid.Column="1" Margin="0,20,0,20">
+            <Grid Grid.Column="1" Margin="0,20,0,20" d:IsHidden="True">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="20"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Grid >
-                    <TextBlock HorizontalAlignment="Left" TextAlignment="Justify" VerticalAlignment="Top"  FontSize="15" FontWeight="Bold" Foreground="White"  Text="{Binding Header}" ></TextBlock>
+                <Grid d:IsHidden="True" >
+                    <TextBlock HorizontalAlignment="Left" TextAlignment="Justify" VerticalAlignment="Top"  FontSize="15" FontWeight="Bold" Foreground="White"  Text="{Binding Header}" d:IsHidden="True" ></TextBlock>
                 </Grid>
-                <Grid  Grid.Row="1">
-                    <TextBlock HorizontalAlignment="Left" TextAlignment="Justify"  MaxWidth="300" VerticalAlignment="Top" TextWrapping="Wrap" FontSize="15"  Foreground="#FFCDC9C9"   Text="{Binding Context}"></TextBlock>
+                <Grid  Grid.Row="1" d:IsHidden="True">
+                    <TextBlock HorizontalAlignment="Left" TextAlignment="Justify"  MaxWidth="300" VerticalAlignment="Top" TextWrapping="Wrap" FontSize="15"  Foreground="#FFCDC9C9"   Text="{Binding Context}" d:IsHidden="True"></TextBlock>
                 </Grid>
             </Grid>
-            <Grid Grid.Column="2">
-                <Button ToolTip="Cancel" Name="CloseButton" Style="{DynamicResource ButtonStyle1}" Margin="5" Background="Transparent" HorizontalAlignment="Right" VerticalAlignment="Top" Click="CloseButton_Click">
-                    <Image x:Name="image" Source="/WPF_StatusNotification;component/Resource/arrow1.png" Visibility="Hidden"  ></Image>
+            <Grid Grid.Column="2" d:IsHidden="True">
+                <Button ToolTip="Cancel" Name="CloseButton" Style="{DynamicResource ButtonStyle1}" Margin="5" Background="Transparent" HorizontalAlignment="Right" VerticalAlignment="Top" Click="CloseButton_Click" d:IsHidden="True">
+                    <Image x:Name="image" Source="/WPF_StatusNotification;component/Resource/arrow1.png" Visibility="Hidden"  />
                 </Button>
             </Grid>
         </Grid>
