@@ -43,6 +43,7 @@ namespace ToastNotification.Base
                 view.SizeToContent = SizeToContent.WidthAndHeight;
             }
             view.Loaded += OverrideLoaded;
+            view.ShowInTaskbar = false;
             if (!view.Options.IsAutoClose)
             {
                 view.Closing += OverrideClosing;
