@@ -54,9 +54,9 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Base\MemoryMapFileHelper.cs" />
     <Compile Include="Base\MyRectangular.cs" />
     <Compile Include="Base\Notifier.cs" />
+    <Compile Include="Base\PersistentMemoryMapping.cs" />
     <Compile Include="Base\ShowOptions.cs" />
     <Compile Include="Base\WindowBindingBase.cs" />
     <Compile Include="Base\NotifierViewBase.cs" />

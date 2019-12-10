@@ -111,48 +111,54 @@ namespace ToastNotification.Base
             var id = myRectangular?.ID;
             RemoveFromStack(id);
             Close();
-          
+
         }
 
         static double GetStackHeight()
         {
-            var helper = MemoryMapFileHelper<List<MyRectangular>>.GetHelper();
-            var list = helper.Read();
-            if (list != null)
+            using (var helper = PersistentMemoryMapping.GetHelper())
             {
-                double topExisted = list.Select(t => t.Height).Sum() + list.Select(t => t.Space).Sum();
-                return topExisted;
+                var list = helper.Read<List<MyRectangular>>();
+                if (list != null)
+                {
+                    double topExisted = list.Select(t => t.Height).Sum() + list.Select(t => t.Space).Sum();
+                    return topExisted;
+                }
+                return 0;
             }
-            return 0;
         }
 
         static void AddToStack(NotifierViewBase notifier)
         {
-            var helper = MemoryMapFileHelper<List<MyRectangular>>.GetHelper();
-            var list = helper.Read();
-            if (list == null)
+            using (var helper = PersistentMemoryMapping.GetHelper())
             {
-                list = new List<MyRectangular>();
+                var list = helper.Read<List<MyRectangular>>();
+                if (list == null)
+                {
+                    list = new List<MyRectangular>();
+                }
+                list.Add(notifier.myRectangular);
+                helper.Write(list);
             }
-            list.Add(notifier.myRectangular);
-            helper.Write(list);
         }
 
         static void RemoveFromStack(string id)
         {
-            var helper = MemoryMapFileHelper<List<MyRectangular>>.GetHelper();
-            var list = helper.Read();
-            if (list != null)
+            using (var helper = PersistentMemoryMapping.GetHelper())
             {
-                var rec = list.FirstOrDefault(t => t.ID.Equals(id));
-                if (rec != null)
+                var list = helper.Read<List<MyRectangular>>();
+                if (list != null)
                 {
-                    rec.IsEmpty = true;
-                    if (list.All(t => t.IsEmpty))
+                    var rec = list.FirstOrDefault(t => t.ID.Equals(id));
+                    if (rec != null)
                     {
-                        list.Clear();
+                        rec.IsEmpty = true;
+                        if (list.All(t => t.IsEmpty))
+                        {
+                            list.Clear();
+                        }
+                        helper.Write(list);
                     }
-                    helper.Write(list);
                 }
             }
         }
