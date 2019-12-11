@@ -98,6 +98,9 @@ namespace ToastNotification.Base
             Show(header, content, warnURI, isAutoClose, showTimeIfAutoCloseMS);
         }
 
+        /// <summary>
+        /// Bug:多线程打开的view不能被发现
+        /// </summary>
         public static void CloseAllNotifier()
         {
             Window[] childArray = Application.Current.Windows.Cast<Window>().ToArray();
@@ -117,10 +120,13 @@ namespace ToastNotification.Base
             {
                 try
                 {
+                    item.Dispatcher.VerifyAccess();
                     item.Close();
                 }
-                catch
-                { }
+                catch(Exception ex)
+                {
+                    item.Dispatcher.Invoke(new Action(() => { item.Close(); }));
+                }
             }
 
         }
