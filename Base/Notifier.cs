@@ -10,8 +10,10 @@ using System.Windows;
 
 namespace ToastNotification.Base
 {
-    public class Notifier:NotifierViewBase
+    public class Notifier : NotifierViewBase
     {
+        internal static List<NotifierViewBase> ListCreatedNotifier = new List<NotifierViewBase>();
+
         static string infoURI = "/ToastNotification;component/Resource/info.png";
         static string errorURI = "/ToastNotification;component/Resource/error.png";
         static string successURI = "/ToastNotification;component/Resource/success.png";
@@ -58,14 +60,14 @@ namespace ToastNotification.Base
             }
         }
 
-        internal static void Show(string header,string content,string ImageUri, bool isAutoClose=true,int showTimeIfAutoCloseMS=5000)
+        internal static void Show(string header, string content, string ImageUri, bool isAutoClose = true, int showTimeIfAutoCloseMS = 5000)
         {
             NotifierViewModel viewModel = new NotifierViewModel()
             {
                 Header = header,
                 Context = content,
                 ImageSource = new BitmapImage(new Uri(ImageUri, UriKind.Relative))
-        };
+            };
             ShowOptions showOptions = new ShowOptions()
             {
                 IsAutoClose = isAutoClose,
@@ -96,7 +98,7 @@ namespace ToastNotification.Base
             Show(header, content, warnURI, isAutoClose, showTimeIfAutoCloseMS);
         }
 
-        public static void CloseAllWindow()
+        public static void CloseAllNotifier()
         {
             Window[] childArray = Application.Current.Windows.Cast<Window>().ToArray();
             for (int i = childArray.Length; i-- > 0;)
@@ -107,6 +109,20 @@ namespace ToastNotification.Base
                     item.Close();
                 }
             }
+        }
+
+        public static void CloseThisNotifier()
+        {
+            foreach (var item in ListCreatedNotifier)
+            {
+                try
+                {
+                    item.Close();
+                }
+                catch
+                { }
+            }
+
         }
     }
 }

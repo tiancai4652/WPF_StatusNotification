@@ -87,6 +87,8 @@ namespace ToastNotification.Base
                         }));
                 });
             }
+
+            Notifier.ListCreatedNotifier.Add(notifier);
         }
 
         internal static void OverrideClosing(object sender, CancelEventArgs e)
@@ -110,8 +112,11 @@ namespace ToastNotification.Base
         {
             var id = myRectangular?.ID;
             RemoveFromStack(id);
+            if (Notifier.ListCreatedNotifier.Contains(this))
+            {
+                Notifier.ListCreatedNotifier.Remove(this);
+            }
             Close();
-
         }
 
         static double GetStackHeight()
