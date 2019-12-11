@@ -18,7 +18,7 @@ namespace ToastNotification.Base
         static string warnURI = "/ToastNotification;component/Resource/warn.png";
 
 
-        public static void ShowView(NotifierViewBase view, ShowOptions options = null)
+        public static void ShowView(NotifierViewBase view, ShowOptions options = null, bool showDialog = false)
         {
             if (view == null)
             {
@@ -48,8 +48,14 @@ namespace ToastNotification.Base
             {
                 view.Closing += OverrideClosing;
             }
-
-            view.Show();
+            if (showDialog)
+            {
+                view.ShowDialog();
+            }
+            else
+            {
+                view.Show();
+            }
         }
 
         internal static void Show(string header,string content,string ImageUri, bool isAutoClose=true,int showTimeIfAutoCloseMS=5000)
