@@ -96,6 +96,17 @@ namespace ToastNotification.Base
             Show(header, content, warnURI, isAutoClose, showTimeIfAutoCloseMS);
         }
 
-
+        public static void CloseAllWindow()
+        {
+            Window[] childArray = Application.Current.Windows.Cast<Window>().ToArray();
+            for (int i = childArray.Length; i-- > 0;)
+            {
+                Window item = childArray[i];
+                if (item is NotifierViewBase)
+                {
+                    item.Close();
+                }
+            }
+        }
     }
 }
