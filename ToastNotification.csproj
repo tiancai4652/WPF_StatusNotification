@@ -37,12 +37,6 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ShareX.HelpersLib">
-      <HintPath>Dll\ShareX.HelpersLib.dll</HintPath>
-    </Reference>
-    <Reference Include="ShareX.ScreenCaptureLib">
-      <HintPath>Dll\ShareX.ScreenCaptureLib.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -71,6 +65,13 @@
     <Compile Include="View\NotifierView.xaml.cs">
       <DependentUpon>NotifierView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\Enums.cs" />
+    <Compile Include="Windows\Extend.cs" />
+    <Compile Include="Windows\NativeMethods.cs" />
+    <Compile Include="Windows\NativeMethods_Helpers.cs" />
+    <Compile Include="Windows\NativeStructs.cs" />
+    <Compile Include="Windows\WindowInfo.cs" />
+    <Compile Include="Windows\WindowsList.cs" />
     <Page Include="View\NotifierView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

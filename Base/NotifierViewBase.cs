@@ -9,8 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Media.Animation;
-using ShareX.HelpersLib;
-using ShareX.ScreenCaptureLib;
+using ToastNotification.Windows;
 
 namespace ToastNotification.Base
 {
