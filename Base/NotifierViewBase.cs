@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Media.Animation;
+using ShareX.HelpersLib;
+using ShareX.ScreenCaptureLib;
 
 namespace ToastNotification.Base
 {
@@ -40,7 +42,7 @@ namespace ToastNotification.Base
 
 
             var top = System.Windows.SystemParameters.WorkArea.Height - GetStackHeight();
-            AddToStack(notifier);
+            //AddToStack(notifier);
 
             if (double.IsNaN(notifier.Options.NotifierTop))
             {
@@ -111,7 +113,7 @@ namespace ToastNotification.Base
         public void CloseFun()
         {
             var id = myRectangular?.ID;
-            RemoveFromStack(id);
+            //RemoveFromStack(id);
             if (Notifier.ListCreatedNotifier.Contains(this))
             {
                 Notifier.ListCreatedNotifier.Remove(this);
@@ -121,51 +123,64 @@ namespace ToastNotification.Base
 
         static double GetStackHeight()
         {
-            using (var helper = PersistentMemoryMapping.GetHelper())
+            //using (var helper = PersistentMemoryMapping.GetHelper())
+            //{
+            //    var list = helper.Read<List<MyRectangular>>();
+            //    if (list != null)
+            //    {
+            //        double topExisted = list.Select(t => t.Height).Sum() + list.Select(t => t.Space).Sum();
+            //        return topExisted;
+            //    }
+            //    return 0;
+            //}
+
+            WindowsList windowsList = new WindowsList();
+            List<WindowInfo> windows = windowsList.GetVisibleWindowsList();
+            windows = windows.Where(t => t.Text.Equals("NotifierView")).ToList();
+            if (windows.Count > 0)
             {
-                var list = helper.Read<List<MyRectangular>>();
-                if (list != null)
-                {
-                    double topExisted = list.Select(t => t.Height).Sum() + list.Select(t => t.Space).Sum();
-                    return topExisted;
-                }
-                return 0;
+                var recList = windows.Select(t => t.Rectangle).ToList();
+                var totalHeight = recList.Sum(t => t.Height);
+                var totalSpace = recList.Count * 5;
+                return totalHeight + totalSpace;
             }
+
+            return 0;
         }
 
-        static void AddToStack(NotifierViewBase notifier)
-        {
-            using (var helper = PersistentMemoryMapping.GetHelper())
-            {
-                var list = helper.Read<List<MyRectangular>>();
-                if (list == null)
-                {
-                    list = new List<MyRectangular>();
-                }
-                list.Add(notifier.myRectangular);
-                helper.Write(list);
-            }
-        }
+        //static void AddToStack(NotifierViewBase notifier)
+        //{
+        //    using (var helper = PersistentMemoryMapping.GetHelper())
+        //    {
+        //        var list = helper.Read<List<MyRectangular>>();
+        //        if (list == null)
+        //        {
+        //            list = new List<MyRectangular>();
+        //        }
+        //        list.Add(notifier.myRectangular);
+        //        helper.Write(list);
+        //    }
+        //}
 
-        static void RemoveFromStack(string id)
-        {
-            using (var helper = PersistentMemoryMapping.GetHelper())
-            {
-                var list = helper.Read<List<MyRectangular>>();
-                if (list != null)
-                {
-                    var rec = list.FirstOrDefault(t => t.ID.Equals(id));
-                    if (rec != null)
-                    {
-                        rec.IsEmpty = true;
-                        if (list.All(t => t.IsEmpty))
-                        {
-                            list.Clear();
-                        }
-                        helper.Write(list);
-                    }
-                }
-            }
-        }
+        //static void RemoveFromStack(string id)
+        //{
+        //    using (var helper = PersistentMemoryMapping.GetHelper())
+        //    {
+        //        var list = helper.Read<List<MyRectangular>>();
+        //        if (list != null)
+        //        {
+        //            var rec = list.FirstOrDefault(t => t.ID.Equals(id));
+        //            if (rec != null)
+        //            {
+        //                rec.IsEmpty = true;
+        //                if (list.All(t => t.IsEmpty))
+        //                {
+        //                    list.Clear();
+        //                }
+        //                helper.Write(list);
+        //            }
+        //        }
+        //    }
+        //}
     }
 }
