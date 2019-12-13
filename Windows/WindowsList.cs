@@ -32,6 +32,11 @@ namespace ToastNotification.Windows
             return windows;
         }
 
+        public bool CheckWindowExist(int windowHandle)
+        {
+            return GetVisibleWindowsList().Exists(t => t.Handle.ToInt32().Equals(windowHandle));
+        }
+
         public List<WindowInfo> GetVisibleWindowsList()
         {
             List<WindowInfo> windows = GetWindowsList();

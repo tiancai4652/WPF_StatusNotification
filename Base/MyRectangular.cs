@@ -8,7 +8,7 @@ namespace ToastNotification.Base
     [Serializable]
     public class MyRectangular
     {
-        public int Index { get; set; }
+        public int Handle { get; set; }
 
         public double Height { get; set; }
 
