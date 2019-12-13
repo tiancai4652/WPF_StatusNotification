@@ -7,7 +7,7 @@ using System.Text;
 
 namespace ToastNotification.Windows
 {
-   public class WindowsList
+    public class WindowsList
     {
         public List<IntPtr> IgnoreWindows { get; set; }
         public delegate bool EnumWindowsProc(IntPtr hWnd, IntPtr lParam);
@@ -32,36 +32,9 @@ namespace ToastNotification.Windows
             return windows;
         }
 
-        public bool CheckWindowExist(int windowHandle)
+        public static bool IsWindowExisted(int windowHandle)
         {
-            return GetVisibleWindowsList().Exists(t => t.Handle.ToInt32().Equals(windowHandle));
-        }
-
-        public List<WindowInfo> GetVisibleWindowsList()
-        {
-            List<WindowInfo> windows = GetWindowsList();
-
-            return windows.Where(IsValidWindow).ToList();
-        }
-
-        private bool IsValidWindow(WindowInfo window)
-        {
-            return window != null && window.IsVisible && !string.IsNullOrEmpty(window.Text) && IsClassNameAllowed(window) && window.Rectangle.IsValid();
-        }
-
-     
-
-
-        private bool IsClassNameAllowed(WindowInfo window)
-        {
-            string className = window.ClassName;
-
-            if (!string.IsNullOrEmpty(className))
-            {
-                return ignoreList.All(ignore => !className.Equals(ignore, StringComparison.OrdinalIgnoreCase));
-            }
-
-            return true;
+            return new WindowsList().GetWindowsList().Exists(t => t.Handle.ToInt32().Equals(windowHandle));
         }
 
         private bool EvalWindows(IntPtr hWnd, IntPtr lParam)
