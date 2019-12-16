@@ -21,10 +21,9 @@ namespace ToastNotification.Base
         public string MemoryMappedFileName { get; set; }
         public string MutexName { get; set; }
         public int MemoryMappedFileSize { get; set; }
-        public bool IsNeedLockReading { get; set; }
 
         string filename { get; set; }
-        MemoryMappedFile memoryMappedFile { get; set; }
+        //MemoryMappedFile memoryMappedFile { get; set; }
         Mutex mutex { get; set; }
 
         public static PersistentMemoryMapping GetHelper()
@@ -32,7 +31,7 @@ namespace ToastNotification.Base
             return new PersistentMemoryMapping("ToastNotification_Mutex","mp.data", "ToastNotification_MemoryName");
         }
 
-        public PersistentMemoryMapping(string memoryMappedFileName,string dataName, string mutexName, int memoryMappedFileSize = 10 * 1024 * 1024, bool isNeedLockReading = false)
+        public PersistentMemoryMapping(string memoryMappedFileName,string dataName, string mutexName, int memoryMappedFileSize = 10 * 1024 * 1024)
         {
             MemoryMappedFileName = memoryMappedFileName;
             MemoryMappedFileSize = memoryMappedFileSize;
@@ -46,23 +45,26 @@ namespace ToastNotification.Base
             {
                 mutex = Mutex.OpenExisting(MutexName);
             }
-            memoryMappedFile = MemoryMappedFile.CreateFromFile(filename, FileMode.Open, MemoryMappedFileName, MemoryMappedFileSize);
-            IsNeedLockReading = isNeedLockReading;
+            //memoryMappedFile = MemoryMappedFile.CreateFromFile(filename, FileMode.Open, MemoryMappedFileName, MemoryMappedFileSize);
+
         }
 
         public void Write<T>(T Object) where T : class
         {
             mutex.WaitOne();
-            using (var accessor = memoryMappedFile.CreateViewAccessor(0, MemoryMappedFileSize))
+            using (var memoryMappedFile = MemoryMappedFile.CreateFromFile(filename, FileMode.Open, MemoryMappedFileName, MemoryMappedFileSize))
             {
-                BinaryFormatter bf = new BinaryFormatter();
-                byte[] buf = new byte[MemoryMappedFileSize];
-                using (var ms = new MemoryStream())
+                using (var accessor = memoryMappedFile.CreateViewAccessor(0, MemoryMappedFileSize))
                 {
-                    bf.Serialize(ms, Object);
-                    buf = ms.ToArray();
+                    BinaryFormatter bf = new BinaryFormatter();
+                    byte[] buf = new byte[MemoryMappedFileSize];
+                    using (var ms = new MemoryStream())
+                    {
+                        bf.Serialize(ms, Object);
+                        buf = ms.ToArray();
+                    }
+                    accessor.WriteArray(0, buf, 0, buf.Count());
                 }
-                accessor.WriteArray(0, buf, 0, buf.Count());
             }
             mutex.ReleaseMutex();
         }
@@ -70,31 +72,32 @@ namespace ToastNotification.Base
         public T Read<T>() where T : class
         {
             T result = null;
-            if (IsNeedLockReading)
-            {
-                mutex.WaitOne();
-            }
+
+            mutex.WaitOne();
+
             BinaryFormatter bf = new BinaryFormatter();
             byte[] buf = new byte[MemoryMappedFileSize];
-            using (var view = memoryMappedFile.CreateViewAccessor(0, MemoryMappedFileSize))
+            using (var memoryMappedFile = MemoryMappedFile.CreateFromFile(filename, FileMode.Open, MemoryMappedFileName, MemoryMappedFileSize))
             {
-                view.ReadArray(0, buf, 0, MemoryMappedFileSize);
-            }
-            if (buf.All(singleByte => singleByte == 0))
-            {
-                result = null;
-            }
-            else
-            {
-                using (var ms = new MemoryStream(buf))
+                using (var view = memoryMappedFile.CreateViewAccessor(0, MemoryMappedFileSize))
                 {
-                    result = bf.Deserialize(ms) as T;
+                    view.ReadArray(0, buf, 0, MemoryMappedFileSize);
+                }
+                if (buf.All(singleByte => singleByte == 0))
+                {
+                    result = null;
+                }
+                else
+                {
+                    using (var ms = new MemoryStream(buf))
+                    {
+                        result = bf.Deserialize(ms) as T;
+                    }
                 }
             }
-            if (IsNeedLockReading)
-            {
-                mutex.ReleaseMutex();
-            }
+
+            mutex.ReleaseMutex();
+
             return result;
         }
 
@@ -115,7 +118,6 @@ namespace ToastNotification.Base
         #region IDisposable Support
         public void Dispose()
         {
-            memoryMappedFile.Dispose();
             mutex.Dispose();
         }
         #endregion
