@@ -5,7 +5,7 @@ Windows更新之路的特色之一就是消息提示由气泡变成了通知窗�
 
 ## 效果图：
 
-![image](https://github.com/tiancai4652/ReadME_Images/effect.gif)
+![image](https://github.com/tiancai4652/ReadME_Images/blob/master/effect.gif)
 
 
 
