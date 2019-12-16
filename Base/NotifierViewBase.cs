@@ -126,9 +126,9 @@ namespace ToastNotification.Base
             using (var helper = PersistentMemoryMapping.GetHelper())
             {
                 var list = helper.Read<List<MyRectangular>>();
-                list = list.Where(t => WindowsList.IsWindowExisted(t.Handle)).ToList();
                 if (list != null)
                 {
+                    list = list.Where(t => WindowsList.IsWindowExisted(t.Handle)).ToList();
                     double topExisted = list.Select(t => t.Height).Sum() + list.Select(t => t.Space).Sum();
                     return topExisted;
                 }
